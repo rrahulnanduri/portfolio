@@ -441,16 +441,52 @@ body {
 
 .wireframe-line {
     stroke: #000;
-    stroke-width: 1.5;
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
     transition: all 0.3s ease;
 }
 
-.wireframe-line.detail {
-    stroke-width: 1;
+/* Main structure lines - thickest */
+.wireframe-line.main {
+    stroke-width: 2.5;
+    opacity: 0.9;
+}
+
+/* Internal structure - medium weight */
+.wireframe-line.internal {
+    stroke-width: 1.8;
+    opacity: 0.7;
+}
+
+/* Dense detail lines - medium weight, high opacity */
+.wireframe-line.dense {
+    stroke-width: 1.5;
+    opacity: 0.8;
+}
+
+/* Cross-hatching - thin lines */
+.wireframe-line.cross {
+    stroke-width: 0.8;
+    opacity: 0.5;
+}
+
+/* Organic lines - varying weight */
+.wireframe-line.organic {
+    stroke-width: 1.2;
     opacity: 0.6;
+}
+
+/* Dense cluster - thick lines for depth */
+.wireframe-line.cluster {
+    stroke-width: 2.0;
+    opacity: 0.85;
+}
+
+/* Edge details - thin lines */
+.wireframe-line.edge {
+    stroke-width: 0.6;
+    opacity: 0.4;
 }
 
 .wireframe-node {
