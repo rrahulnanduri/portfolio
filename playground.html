@@ -10,22 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="playground-page">
-    <!-- Header -->
-    <header class="playground-header">
-        <div class="header-left">
-            <div class="status-dot"></div>
-            <span class="header-text">EXPERIENTIAL | BRANDING | DIGITAL</span>
-        </div>
-        <div class="header-center">
-            <span class="location">NEW YORK CITY</span>
-            <span class="weather">79° OVERCAST</span>
-        </div>
-        <div class="header-right">
-            <span class="header-text">About Us</span>
-            <span class="header-text">Contact</span>
-            <div class="status-dot"></div>
-        </div>
-    </header>
 
     <!-- Interactive Wireframe Background -->
     <div class="wireframe-container">
@@ -75,37 +59,11 @@
         </svg>
     </div>
 
-    <!-- Content Overlay -->
-    <div class="playground-content">
-        <div class="content-left">
-            <div class="vertical-text">EXPERIENTIAL</div>
-            <div class="vertical-text">BRANDING</div>
-            <div class="vertical-text">DIGITAL</div>
-        </div>
-        
-        <div class="content-right">
-            <div class="vertical-text">13:01:20</div>
-            <div class="vertical-text">40.7128° N, 74.0060° W</div>
-            <div class="vertical-text">MADE WITH LOVE ♥</div>
-        </div>
-    </div>
 
-    <!-- Bottom Branding -->
-    <div class="bottom-branding">
-        <div class="brand-logo">
-            <h1 class="brand-name">RAHUL</h1>
-            <p class="brand-subtitle">EXPERIENCE STUDIO</p>
-            <div class="brand-accent"></div>
-        </div>
-    </div>
-
-    <!-- Cursor Tracker -->
-    <div class="cursor-tracker" id="cursorTracker"></div>
 
     <script>
         // Interactive wireframe cursor tracking
         const wireframe = document.getElementById('wireframe');
-        const cursorTracker = document.getElementById('cursorTracker');
         const particles = document.querySelectorAll('.particle');
         const lines = document.querySelectorAll('.wireframe-line');
         const nodes = document.querySelectorAll('.wireframe-node');
@@ -119,10 +77,6 @@
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-            
-            // Update cursor tracker position
-            cursorTracker.style.left = mouseX + 'px';
-            cursorTracker.style.top = mouseY + 'px';
         });
 
         // Animation loop
