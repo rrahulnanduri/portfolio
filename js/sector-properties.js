@@ -24,7 +24,8 @@ class SectorProperties {
             tags: ['UX/UI Design', 'UX Research', 'Design Systems'],
             category: 'Design Tools',
             sectorImage: 'layerlens-mockup', // CSS class for styling
-            mockupType: 'app', // app, browser, mobile, custom
+            mockupType: 'image', // app, browser, mobile, custom, image
+            thumbnailImage: 'images/layerlens-thumbnail.svg', // Path to thumbnail image
             status: 'Completed',
             year: '2024',
             duration: '3 months',

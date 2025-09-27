@@ -401,6 +401,16 @@
                             </div>
                         </div>
                     `;
+                case 'image':
+                    const imagePath = sector.thumbnailImage || 'images/placeholder.svg';
+                    return `
+                        <div class="mockup-image">
+                            <img src="${imagePath}" 
+                                 alt="${sector.title} - Thumbnail" 
+                                 class="thumbnail-image"
+                                 onerror="this.style.background='#f8f9fa'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='<span style=color:#999;>Image not found</span>';">
+                        </div>
+                    `;
                 default:
                     return `
                         <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #F24405, #F28705); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
@@ -408,7 +418,7 @@
                                 <h3 style="margin-bottom: 10px;">${sector.title}</h3>
                                 <p style="opacity: 0.9;">${sector.subtitle}</p>
                             </div>
-        </div>
+                        </div>
                     `;
             }
         }

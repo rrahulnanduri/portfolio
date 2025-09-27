@@ -96,6 +96,8 @@ class SectorPage {
                 return this.createAppMockup(sectorData);
             case 'mobile':
                 return this.createMobileMockup(sectorData);
+            case 'image':
+                return this.createImageMockup(sectorData);
             default:
                 return this.createCustomMockup(sectorData);
         }
@@ -163,6 +165,23 @@ class SectorPage {
                         <p>${sectorData.subtitle}</p>
                     </div>
                 </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Create image mockup HTML
+     * @param {Object} sectorData - Sector data
+     * @returns {string} HTML string
+     */
+    createImageMockup(sectorData) {
+        const imagePath = sectorData.thumbnailImage || 'images/placeholder.svg';
+        return `
+            <div class="mockup-image">
+                <img src="${imagePath}" 
+                     alt="${sectorData.title} - Thumbnail" 
+                     class="thumbnail-image"
+                     onerror="this.style.background='#f8f9fa'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='<span style=color:#999;>Image not found</span>';">
             </div>
         `;
     }
