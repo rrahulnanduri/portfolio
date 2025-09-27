@@ -271,6 +271,12 @@
             // Draws the background and calls the function for drawing the dots
             draw() {
                 this.canvas.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+                
+                // Draw a test border to see canvas bounds
+                this.canvas.strokeStyle = 'red';
+                this.canvas.lineWidth = 2;
+                this.canvas.strokeRect(0, 0, this.canvasWidth / this.dpr, this.canvasHeight / this.dpr);
+                
                 this.drawDots();
             }
 
@@ -283,13 +289,24 @@
                 let canvasWidth = this.canvasWidth / this.dpr;
                 let canvasHeight = this.canvasHeight / this.dpr;
                 
+                // Calculate grid bounds
+                let maxI = Math.ceil(canvasWidth / gridSize) + 1;
+                let maxJ = Math.ceil(canvasHeight / gridSize) + 1;
+                
                 // Debug logging
+                console.log('=== DOT GRID DEBUG ===');
                 console.log('Canvas dimensions:', canvasWidth, 'x', canvasHeight);
+                console.log('Grid size:', gridSize);
                 console.log('Grid calculation:', canvasWidth / gridSize, 'x', canvasHeight / gridSize);
+                console.log('Max dots (i,j):', maxI, 'x', maxJ);
+                console.log('Total dots to draw:', maxI * maxJ);
+                console.log('Last dot position will be:', (maxI-1) * gridSize, 'x', (maxJ-1) * gridSize);
+                
+                let dotCount = 0;
                 
                 // Start from 0 and go beyond the original bounds to ensure full coverage
-                for (var i = 0; i < Math.ceil(canvasWidth / gridSize) + 1; i++) {
-                    for (var j = 0; j < Math.ceil(canvasHeight / gridSize) + 1; j++) {
+                for (var i = 0; i < maxI; i++) {
+                    for (var j = 0; j < maxJ; j++) {
                         let x = i * gridSize;
                         let y = j * gridSize;
                         let dist = this.pythag(x, y, this.mouseX, this.mouseY);
@@ -312,8 +329,18 @@
                         );
                         this.canvas.fillStyle = "rgba(242, 135, 5, 0.5)"; // 50% opacity
                         this.canvas.fill();
+                        
+                        dotCount++;
+                        
+                        // Log first few and last few dots
+                        if (dotCount <= 5 || dotCount > maxI * maxJ - 5) {
+                            console.log(`Dot ${dotCount}: (${i},${j}) at (${x},${y})`);
+                        }
                     }
                 }
+                
+                console.log('Actually drew', dotCount, 'dots');
+                console.log('=== END DEBUG ===');
             }
 
             // Grabs mouse position, checks if the mouse is off the screen (NaN) and calculates the distance from the mouse pointer and each dot using the pythagorean theorem.
