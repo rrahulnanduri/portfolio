@@ -375,11 +375,14 @@ body {
 .tag {
     background: rgba(255, 255, 255, 0.2);
     color: white;
-    padding: 0.25rem 0.75rem;
+    padding: 0.3rem 0.9rem; /* Increased by 20%: 0.25*1.2=0.3, 0.75*1.2=0.9 */
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 500;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    min-height: 2.4rem; /* Added minimum height for consistency */
+    display: flex;
+    align-items: center;
 }
 
 /* ========================================
@@ -531,6 +534,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 4px; /* Reduced from default padding */
 }
 
 .thumbnail-image {
@@ -538,7 +542,7 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 8px;
+    border-radius: 6px; /* Slightly smaller radius to account for padding */
 }
 
 /* Responsive Design */
@@ -834,10 +838,13 @@ body {
 .tag {
     background: #F28705;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem; /* Increased by 20%: 0.5*1.2=0.6, 1*1.2=1.2 */
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
+    min-height: 2.4rem; /* Added minimum height for consistency */
+    display: flex;
+    align-items: center;
 }
 
 /* Visual Section */
