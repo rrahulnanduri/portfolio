@@ -258,25 +258,30 @@
             }
 
             resize() {
-                // Get the actual rendered size of the canvas element
-                const rect = this.canvasElement.getBoundingClientRect();
-                const actualWidth = rect.width;
-                const actualHeight = rect.height;
-                
-                // Set canvas internal size to match the actual rendered size
-                this.canvasWidth = actualWidth * this.dpr;
-                this.canvasHeight = actualHeight * this.dpr;
-                
-                // Set canvas size
-                this.canvasElement.width = this.canvasWidth;
-                this.canvasElement.height = this.canvasHeight;
-                
-                // Force CSS size to match viewport - use 100vw and 100vh
+                // Force CSS size to match viewport first
                 this.canvasElement.style.width = '100vw';
                 this.canvasElement.style.height = '100vh';
                 
-                // Update drawable for mouse calculations
-                this.drawable = this.canvasElement.getBoundingClientRect();
+                // Wait a frame for CSS to apply, then get actual dimensions
+                requestAnimationFrame(() => {
+                    const rect = this.canvasElement.getBoundingClientRect();
+                    const actualWidth = rect.width;
+                    const actualHeight = rect.height;
+                    
+                    // Use the actual rendered dimensions
+                    this.canvasWidth = actualWidth * this.dpr;
+                    this.canvasHeight = actualHeight * this.dpr;
+                    
+                    // Set canvas internal size
+                    this.canvasElement.width = this.canvasWidth;
+                    this.canvasElement.height = this.canvasHeight;
+                    
+                    // Update drawable for mouse calculations
+                    this.drawable = this.canvasElement.getBoundingClientRect();
+                    
+                    // Redraw after resize
+                    this.draw();
+                });
                 
                 console.log('=== EXTENSIVE DEBUG ===');
                 console.log('window.innerWidth:', window.innerWidth);
