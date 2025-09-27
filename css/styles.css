@@ -534,7 +534,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px; /* Reduced from default padding */
+    padding: 0; /* No padding - image sits flush */
 }
 
 .thumbnail-image {
@@ -542,7 +542,7 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 6px; /* Slightly smaller radius to account for padding */
+    border-radius: 8px; /* Match parent border radius */
 }
 
 /* Responsive Design */
@@ -1042,9 +1042,9 @@ body {
     background: #f8f9fa;
     padding: 1.5rem;
     border-radius: 8px;
-    text-align: center;
-}
-
+        text-align: center;
+    }
+    
 .process-step h4 {
     color: #333;
     margin-bottom: 0.5rem;
@@ -1068,7 +1068,7 @@ body {
 .ux-features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+        gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
