@@ -7,12 +7,20 @@
 
 body {
     font-family: 'VT323', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #F2F0E4;
+    background: linear-gradient(45deg, #F2F0E4, #F28705, #F25C05, #F24405, #000000);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
     font-size: 18px;
     letter-spacing: 0.5px;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Container Layout */
@@ -426,7 +434,9 @@ body {
 
 /* Playground Page Styles */
 .playground-page {
-    background: #F2F0E4;
+    background: linear-gradient(45deg, #F2F0E4, #F28705, #F25C05);
+    background-size: 300% 300%;
+    animation: gradientAnimation 20s ease infinite;
     overflow: hidden;
     position: relative;
     height: 100vh;
@@ -555,7 +565,9 @@ body {
 
 /* Sector Pages Styles */
 .sector-page {
-    background: #F2F0E4;
+    background: linear-gradient(45deg, #F2F0E4, #F28705);
+    background-size: 200% 200%;
+    animation: gradientAnimation 25s ease infinite;
     min-height: 100vh;
     display: grid;
     grid-template-columns: 200px 1fr;
