@@ -258,9 +258,14 @@
             }
 
             resize() {
-                // Force canvas to cover the entire viewport
-                this.canvasWidth = window.innerWidth * this.dpr;
-                this.canvasHeight = window.innerHeight * this.dpr;
+                // Get the actual rendered size of the canvas element
+                const rect = this.canvasElement.getBoundingClientRect();
+                const actualWidth = rect.width;
+                const actualHeight = rect.height;
+                
+                // Set canvas internal size to match the actual rendered size
+                this.canvasWidth = actualWidth * this.dpr;
+                this.canvasHeight = actualHeight * this.dpr;
                 
                 // Set canvas size
                 this.canvasElement.width = this.canvasWidth;
@@ -312,19 +317,19 @@
                 let size = 2.7; // 1.8x bigger (1.5 * 1.8 = 2.7)
                 let gridSize = 30;
                 
-                // Use viewport dimensions for full coverage
-                let viewportWidth = window.innerWidth;
-                let viewportHeight = window.innerHeight;
+                // Use actual canvas dimensions for full coverage
+                let canvasWidth = this.canvasWidth / this.dpr;
+                let canvasHeight = this.canvasHeight / this.dpr;
                 
                 // Calculate grid bounds
-                let maxI = Math.ceil(viewportWidth / gridSize) + 1;
-                let maxJ = Math.ceil(viewportHeight / gridSize) + 1;
+                let maxI = Math.ceil(canvasWidth / gridSize) + 1;
+                let maxJ = Math.ceil(canvasHeight / gridSize) + 1;
                 
                 // Debug logging
                 console.log('=== DOT GRID DEBUG ===');
-                console.log('Viewport dimensions:', viewportWidth, 'x', viewportHeight);
+                console.log('Canvas dimensions:', canvasWidth, 'x', canvasHeight);
                 console.log('Grid size:', gridSize);
-                console.log('Grid calculation:', viewportWidth / gridSize, 'x', viewportHeight / gridSize);
+                console.log('Grid calculation:', canvasWidth / gridSize, 'x', canvasHeight / gridSize);
                 console.log('Max dots (i,j):', maxI, 'x', maxJ);
                 console.log('Total dots to draw:', maxI * maxJ);
                 console.log('Last dot position will be:', (maxI-1) * gridSize, 'x', (maxJ-1) * gridSize);
