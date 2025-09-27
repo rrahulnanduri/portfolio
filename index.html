@@ -240,13 +240,28 @@
                     return;
                 }
                 
+                // COMPREHENSIVE DEBUGGING
+                console.log('=== COMPREHENSIVE DEBUG START ===');
+                console.log('Browser:', navigator.userAgent);
+                console.log('Device pixel ratio:', this.dpr);
+                console.log('Screen size:', window.screen.width, 'x', window.screen.height);
+                console.log('Screen avail size:', window.screen.availWidth, 'x', window.screen.availHeight);
+                console.log('Window outer size:', window.outerWidth, 'x', window.outerHeight);
+                console.log('Window inner size:', window.innerWidth, 'x', window.innerHeight);
+                console.log('Document client size:', document.documentElement.clientWidth, 'x', document.documentElement.clientHeight);
+                console.log('Document scroll size:', document.documentElement.scrollWidth, 'x', document.documentElement.scrollHeight);
+                console.log('Canvas element before resize:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
+                console.log('Canvas element getBoundingClientRect before:', this.canvasElement.getBoundingClientRect());
+                
                 this.resize();
                 this.draw(); // Draw initial frame
                 
-                // Debug logging
-                console.log('Canvas size:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
-                console.log('Viewport size:', window.innerWidth, 'x', window.innerHeight);
-                console.log('Canvas element size:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
+                // More debugging after resize
+                console.log('Canvas element after resize:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
+                console.log('Canvas element getBoundingClientRect after:', this.canvasElement.getBoundingClientRect());
+                console.log('Canvas internal size:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
+                console.log('Canvas CSS computed style:', window.getComputedStyle(this.canvasElement).width, 'x', window.getComputedStyle(this.canvasElement).height);
+                console.log('=== COMPREHENSIVE DEBUG END ===');
                 
                 // Listen for Mouse updates
                 document.body.addEventListener(
@@ -255,6 +270,15 @@
                     false
                 );
                 window.addEventListener('resize', this.resize.bind(this));
+                
+                // Test if canvas is actually drawing
+                setTimeout(() => {
+                    console.log('=== CANVAS DRAWING TEST ===');
+                    const ctx = this.canvas.getContext('2d');
+                    ctx.fillStyle = 'yellow';
+                    ctx.fillRect(10, 10, 50, 50);
+                    console.log('Drew yellow test square at (10,10)');
+                }, 1000);
             }
 
             resize() {
@@ -319,6 +343,25 @@
                 this.canvas.fillRect((this.canvasWidth / this.dpr) - 10, 0, 10, 10);
                 this.canvas.fillRect(0, (this.canvasHeight / this.dpr) - 10, 10, 10);
                 this.canvas.fillRect((this.canvasWidth / this.dpr) - 10, (this.canvasHeight / this.dpr) - 10, 10, 10);
+                
+                // Draw center cross to see if canvas is working
+                this.canvas.strokeStyle = 'purple';
+                this.canvas.lineWidth = 2;
+                const centerX = (this.canvasWidth / this.dpr) / 2;
+                const centerY = (this.canvasHeight / this.dpr) / 2;
+                this.canvas.beginPath();
+                this.canvas.moveTo(centerX - 20, centerY);
+                this.canvas.lineTo(centerX + 20, centerY);
+                this.canvas.moveTo(centerX, centerY - 20);
+                this.canvas.lineTo(centerX, centerY + 20);
+                this.canvas.stroke();
+                
+                // Draw dimension text
+                this.canvas.fillStyle = 'black';
+                this.canvas.font = '16px Arial';
+                this.canvas.fillText(`Canvas: ${Math.round(this.canvasWidth / this.dpr)}x${Math.round(this.canvasHeight / this.dpr)}`, 20, 30);
+                this.canvas.fillText(`Screen: ${window.screen.width}x${window.screen.height}`, 20, 50);
+                this.canvas.fillText(`Viewport: ${window.innerWidth}x${window.innerHeight}`, 20, 70);
                 
                 this.drawDots();
             }
