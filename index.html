@@ -279,30 +279,27 @@
                 let size = 2.7; // 1.8x bigger (1.5 * 1.8 = 2.7)
                 let gridSize = 30;
                 
-                // Use the actual canvas dimensions in CSS pixels (not viewport)
+                // Use the exact logic from your original code but ensure full coverage
                 let canvasWidth = this.canvasWidth / this.dpr;
                 let canvasHeight = this.canvasHeight / this.dpr;
                 
-                // Calculate how many dots we need to cover the entire canvas
-                let dotsX = Math.ceil(canvasWidth / gridSize) + 2; // +2 for buffer
-                let dotsY = Math.ceil(canvasHeight / gridSize) + 2; // +2 for buffer
-                
                 // Debug logging
                 console.log('Canvas dimensions:', canvasWidth, 'x', canvasHeight);
-                console.log('Drawing dots:', dotsX, 'x', dotsY, 'gridSize:', gridSize);
+                console.log('Grid calculation:', canvasWidth / gridSize, 'x', canvasHeight / gridSize);
                 
-                for (var i = 0; i < dotsX; i++) {
-                    for (var j = 0; j < dotsY; j++) {
+                // Start from 0 and go beyond the original bounds to ensure full coverage
+                for (var i = 0; i < Math.ceil(canvasWidth / gridSize) + 1; i++) {
+                    for (var j = 0; j < Math.ceil(canvasHeight / gridSize) + 1; j++) {
                         let x = i * gridSize;
                         let y = j * gridSize;
                         let dist = this.pythag(x, y, this.mouseX, this.mouseY);
                         
-                        // Calculate repulsion effect
+                        // Calculate repulsion effect - using your original formula
                         let repulsionX = 0;
                         let repulsionY = 0;
                         if (dist > 0 && dist < 100) { // Only apply repulsion within 100px
-                            repulsionX = (x - this.mouseX) / dist * 20;
-                            repulsionY = (y - this.mouseY) / dist * 20;
+                            repulsionX = (x - this.mouseX) / dist * gridSize * 0.3;
+                            repulsionY = (y - this.mouseY) / dist * gridSize * 0.3;
                         }
                         
                         this.canvas.beginPath();
