@@ -13,6 +13,9 @@
     <!-- Interactive Dot Grid Background -->
     <canvas id="dotGrid" class="dot-grid-canvas"></canvas>
     
+    <!-- Full Screen Toggle Button -->
+    <button id="fullscreenBtn" class="fullscreen-btn">Enter Full Screen</button>
+    
     <div class="container">
         <!-- Left Sidebar -->
         <aside class="sidebar">
@@ -282,17 +285,17 @@
             }
 
             resize() {
-                // Force canvas to full screen dimensions using JavaScript
-                const screenWidth = window.screen.width;
-                const screenHeight = window.screen.height;
+                // Use viewport dimensions (100vw/100vh will work in full-screen mode)
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
                 
-                // Set CSS size to full screen dimensions
-                this.canvasElement.style.width = screenWidth + 'px';
-                this.canvasElement.style.height = screenHeight + 'px';
+                // Set CSS size to viewport dimensions
+                this.canvasElement.style.width = viewportWidth + 'px';
+                this.canvasElement.style.height = viewportHeight + 'px';
                 
-                // Set canvas internal size to match
-                this.canvasWidth = screenWidth * this.dpr;
-                this.canvasHeight = screenHeight * this.dpr;
+                // Set canvas internal size to match viewport
+                this.canvasWidth = viewportWidth * this.dpr;
+                this.canvasHeight = viewportHeight * this.dpr;
                 
                 this.canvasElement.width = this.canvasWidth;
                 this.canvasElement.height = this.canvasHeight;
@@ -300,12 +303,12 @@
                 // Update drawable for mouse calculations
                 this.drawable = this.canvasElement.getBoundingClientRect();
                 
-                console.log('=== FORCED FULL SCREEN ===');
-                console.log('Screen dimensions:', screenWidth, 'x', screenHeight);
+                console.log('=== CANVAS RESIZE ===');
+                console.log('Viewport dimensions:', viewportWidth, 'x', viewportHeight);
                 console.log('Canvas CSS size:', this.canvasElement.style.width, 'x', this.canvasElement.style.height);
                 console.log('Canvas internal:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
                 console.log('Canvas element size:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
-                console.log('=== END FORCED FULL SCREEN ===');
+                console.log('=== END CANVAS RESIZE ===');
                 
                 console.log('=== EXTENSIVE DEBUG ===');
                 console.log('window.innerWidth:', window.innerWidth);
@@ -441,6 +444,38 @@
 
         const grid = new DotGrid("dotGrid");
         grid.init();
+        
+        // Full Screen Functionality
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        
+        fullscreenBtn.addEventListener('click', async () => {
+            try {
+                if (!document.fullscreenElement) {
+                    // Enter full screen
+                    await document.documentElement.requestFullscreen();
+                    fullscreenBtn.textContent = 'Exit Full Screen';
+                } else {
+                    // Exit full screen
+                    await document.exitFullscreen();
+                    fullscreenBtn.textContent = 'Enter Full Screen';
+                }
+            } catch (err) {
+                console.error('Full screen error:', err);
+            }
+        });
+        
+        // Listen for full screen changes
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                fullscreenBtn.textContent = 'Exit Full Screen';
+                console.log('Entered full screen mode');
+            } else {
+                fullscreenBtn.textContent = 'Enter Full Screen';
+                console.log('Exited full screen mode');
+            }
+            // Resize canvas when entering/exiting full screen
+            grid.resize();
+        });
     </script>
 </body>
 </html>
