@@ -258,14 +258,24 @@
             }
 
             resize() {
-                // Use viewport dimensions instead of getBoundingClientRect
+                // Force canvas to cover the entire viewport
                 this.canvasWidth = window.innerWidth * this.dpr;
                 this.canvasHeight = window.innerHeight * this.dpr;
+                
+                // Set canvas size
                 this.canvasElement.width = this.canvasWidth;
                 this.canvasElement.height = this.canvasHeight;
                 
+                // Force CSS size to match viewport
+                this.canvasElement.style.width = window.innerWidth + 'px';
+                this.canvasElement.style.height = window.innerHeight + 'px';
+                
                 // Update drawable for mouse calculations
                 this.drawable = this.canvasElement.getBoundingClientRect();
+                
+                console.log('Resize - Canvas internal:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
+                console.log('Resize - Canvas CSS:', this.canvasElement.style.width, 'x', this.canvasElement.style.height);
+                console.log('Resize - Viewport:', window.innerWidth, 'x', window.innerHeight);
             }
 
             // Draws the background and calls the function for drawing the dots
