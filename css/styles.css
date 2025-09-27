@@ -7,7 +7,7 @@
 
 body {
     font-family: 'VT323', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #f8f8f8;
+    background-color: #F2F0E4;
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
@@ -129,6 +129,19 @@ body {
     text-decoration: none;
     color: inherit;
     display: block;
+    position: relative;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, transparent 0%, #F24405 100%);
+    opacity: 0.1;
+    pointer-events: none;
 }
 
 .project-card:hover {
@@ -413,7 +426,7 @@ body {
 
 /* Playground Page Styles */
 .playground-page {
-    background: #f0f0f0;
+    background: #F2F0E4;
     overflow: hidden;
     position: relative;
     height: 100vh;
@@ -503,7 +516,7 @@ body {
 .scroll-content {
     position: relative;
     z-index: 2;
-    background: rgba(248, 248, 248, 0.9);
+    background: rgba(242, 240, 228, 0.9);
     padding: 2rem;
     margin-top: 100vh;
 }
@@ -542,7 +555,7 @@ body {
 
 /* Sector Pages Styles */
 .sector-page {
-    background: #f8f8f8;
+    background: #F2F0E4;
     min-height: 100vh;
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -639,8 +652,8 @@ body {
 }
 
 .tag {
-    background: #f0f0f0;
-    color: #666;
+    background: #F28705;
+    color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -649,7 +662,7 @@ body {
 
 /* Visual Section */
 .sector-visual {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #F28705 0%, #F24405 100%);
     margin: 2rem;
     padding: 3rem 2rem;
     border-radius: 12px;
@@ -748,7 +761,7 @@ body {
     background: #f8f9fa;
     padding: 1.5rem;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #F25C05;
 }
 
 .feature-card h3 {
