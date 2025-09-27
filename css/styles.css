@@ -382,6 +382,144 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* ========================================
+   SECTOR STANDARDIZATION SYSTEM
+   ======================================== */
+
+/* Standardized Sector Dimensions */
+.project-card {
+    min-height: 400px;
+    max-width: 100%;
+}
+
+/* Standardized Mockup Area (Top Half) */
+.project-mockup {
+    height: 200px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Standardized Info Area (Bottom Half) */
+.project-info {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ========================================
+   REUSABLE MOCKUP COMPONENTS
+   ======================================== */
+
+/* Browser Window Mockup */
+.mockup-browser {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.browser-header {
+    height: 30px;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.browser-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.browser-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.browser-dots span:nth-child(1) { background: #ff5f57; }
+.browser-dots span:nth-child(2) { background: #ffbd2e; }
+.browser-dots span:nth-child(3) { background: #28ca42; }
+
+.browser-content {
+    padding: 20px;
+    height: calc(100% - 30px);
+    overflow: hidden;
+}
+
+/* App Window Mockup */
+.mockup-app {
+    width: 100%;
+    height: 100%;
+    background: #2d3748;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.app-header {
+    height: 30px;
+    background: #1a202c;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.app-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.app-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.app-dots span:nth-child(1) { background: #ff5f57; }
+.app-dots span:nth-child(2) { background: #ffbd2e; }
+.app-dots span:nth-child(3) { background: #28ca42; }
+
+.app-content {
+    padding: 20px;
+    height: calc(100% - 30px);
+    overflow: hidden;
+}
+
+/* Mobile Mockup */
+.mockup-mobile {
+    width: 200px;
+    height: 100%;
+    background: #1a1a1a;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+.mobile-screen {
+    width: 100%;
+    height: calc(100% - 40px);
+    background: white;
+    margin-top: 20px;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+}
+
+.mobile-content {
+    padding: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .container {
