@@ -25,7 +25,7 @@ class SectorProperties {
             category: 'Design Tools',
             sectorImage: 'layerlens-mockup', // CSS class for styling
             mockupType: 'image', // app, browser, mobile, custom, image
-            thumbnailImage: 'images/layerlens-thumbnail.svg', // Path to thumbnail image
+            thumbnailImage: 'images/Brown Dock Sunset.jpg', // Path to thumbnail image
             status: 'Completed',
             year: '2024',
             duration: '3 months',
