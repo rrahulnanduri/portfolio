@@ -58,8 +58,8 @@
             </nav>
         </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
+    <!-- Main Content -->
+    <main class="main-content">
             <div class="projects-grid">
                 <!-- Project Card 1 -->
                 <a href="layerlens.html" class="project-card">
@@ -100,7 +100,7 @@
                             <span class="tag">UX/UI Design</span>
                             <span class="tag">UX Research</span>
                         </div>
-                    </div>
+                </div>
                 </a>
 
                 <!-- Project Card 2 -->
@@ -200,11 +200,11 @@
                         <div class="project-tags">
                             <span class="tag">UX/UI Design</span>
                             <span class="tag">UX Research</span>
-                        </div>
                     </div>
+                </div>
                 </a>
             </div>
-        </main>
+    </main>
     </div>
 
     <script>
@@ -266,9 +266,9 @@
                 this.canvasElement.width = this.canvasWidth;
                 this.canvasElement.height = this.canvasHeight;
                 
-                // Force CSS size to match viewport
-                this.canvasElement.style.width = window.innerWidth + 'px';
-                this.canvasElement.style.height = window.innerHeight + 'px';
+                // Force CSS size to match viewport - use 100vw and 100vh
+                this.canvasElement.style.width = '100vw';
+                this.canvasElement.style.height = '100vh';
                 
                 // Update drawable for mouse calculations
                 this.drawable = this.canvasElement.getBoundingClientRect();
@@ -312,19 +312,19 @@
                 let size = 2.7; // 1.8x bigger (1.5 * 1.8 = 2.7)
                 let gridSize = 30;
                 
-                // Use the exact logic from your original code but ensure full coverage
-                let canvasWidth = this.canvasWidth / this.dpr;
-                let canvasHeight = this.canvasHeight / this.dpr;
+                // Use viewport dimensions for full coverage
+                let viewportWidth = window.innerWidth;
+                let viewportHeight = window.innerHeight;
                 
                 // Calculate grid bounds
-                let maxI = Math.ceil(canvasWidth / gridSize) + 1;
-                let maxJ = Math.ceil(canvasHeight / gridSize) + 1;
+                let maxI = Math.ceil(viewportWidth / gridSize) + 1;
+                let maxJ = Math.ceil(viewportHeight / gridSize) + 1;
                 
                 // Debug logging
                 console.log('=== DOT GRID DEBUG ===');
-                console.log('Canvas dimensions:', canvasWidth, 'x', canvasHeight);
+                console.log('Viewport dimensions:', viewportWidth, 'x', viewportHeight);
                 console.log('Grid size:', gridSize);
-                console.log('Grid calculation:', canvasWidth / gridSize, 'x', canvasHeight / gridSize);
+                console.log('Grid calculation:', viewportWidth / gridSize, 'x', viewportHeight / gridSize);
                 console.log('Max dots (i,j):', maxI, 'x', maxJ);
                 console.log('Total dots to draw:', maxI * maxJ);
                 console.log('Last dot position will be:', (maxI-1) * gridSize, 'x', (maxJ-1) * gridSize);
