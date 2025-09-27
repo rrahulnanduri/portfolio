@@ -240,7 +240,7 @@
 
             init() {
                 this.resize();
-                window.requestAnimationFrame(this.draw.bind(this));
+                this.draw(); // Draw initial frame
                 // Listen for Mouse updates
                 document.body.addEventListener(
                     "mousemove",
@@ -266,22 +266,31 @@
 
             // i and j function as x and y when drawing the dot grid.
             drawDots() {
-                let size = 1.5;
+                let size = 2.7; // 1.8x bigger (1.5 * 1.8 = 2.7)
                 let gridSize = 30;
-                for (var i = 2; i < this.canvasWidth / this.dpr / gridSize - 1; i++) {
-                    for (var j = 2; j < this.canvasHeight / this.dpr / gridSize - 1; j++) {
+                for (var i = 0; i < this.canvasWidth / this.dpr / gridSize + 1; i++) {
+                    for (var j = 0; j < this.canvasHeight / this.dpr / gridSize + 1; j++) {
                         let x = i * gridSize;
                         let y = j * gridSize;
                         let dist = this.pythag(x, y, this.mouseX, this.mouseY);
+                        
+                        // Calculate repulsion effect
+                        let repulsionX = 0;
+                        let repulsionY = 0;
+                        if (dist > 0 && dist < 100) { // Only apply repulsion within 100px
+                            repulsionX = (x - this.mouseX) / dist * 20;
+                            repulsionY = (y - this.mouseY) / dist * 20;
+                        }
+                        
                         this.canvas.beginPath();
                         this.canvas.arc(
-                            x + (x - this.mouseX) / dist * gridSize * 0.3,
-                            y + (y - this.mouseY) / dist * gridSize * 0.3,
+                            x + repulsionX,
+                            y + repulsionY,
                             size,
                             0,
                             Math.PI * 2
                         );
-                        this.canvas.fillStyle = "rgba(242, 135, 5, 0.3)";
+                        this.canvas.fillStyle = "rgba(242, 135, 5, 0.5)"; // 50% opacity
                         this.canvas.fill();
                     }
                 }
