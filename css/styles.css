@@ -17,7 +17,7 @@ body {
 
 /* Interactive Dot Grid Background */
 .dot-grid-canvas {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100vw;
@@ -26,6 +26,8 @@ body {
     pointer-events: none;
     display: block;
     border: 2px solid green !important;
+    background: transparent;
+    transform: translateZ(0);
 }
 
 /* Container Layout */
