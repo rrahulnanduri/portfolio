@@ -66,8 +66,9 @@ class SectorProperties {
             description: 'Brought a luxury glassware brand to life through immersive e-commerce design and seamless user experience.',
             tags: ['E-commerce', 'Visual Design', 'Brand Identity'],
             category: 'E-commerce',
-            sectorImage: 'hudson-wilder-mockup',
-            mockupType: 'browser',
+            sectorImage: 'hudson-wilder-mockup', // CSS class for styling
+            mockupType: 'browser', // app, browser, mobile, custom, image
+            thumbnailImage: 'images/placeholder.svg', // Path to thumbnail image
             status: 'Live',
             year: '2024',
             duration: '4 months',
@@ -108,8 +109,9 @@ class SectorProperties {
             description: 'Brought a music studio\'s creative vision to life through immersive web design and interactive audio experiences.',
             tags: ['Music', 'Visual Design', 'Interactive Design'],
             category: 'Creative Platforms',
-            sectorImage: 'neptune-studio-mockup',
-            mockupType: 'app',
+            sectorImage: 'neptune-studio-mockup', // CSS class for styling
+            mockupType: 'app', // app, browser, mobile, custom, image
+            thumbnailImage: 'images/placeholder.svg', // Path to thumbnail image
             status: 'In Development',
             year: '2024',
             duration: '6 months',
@@ -150,8 +152,9 @@ class SectorProperties {
             description: 'Developed a comprehensive framework for sustainable AI implementation in enterprise environments.',
             tags: ['AI/ML', 'Sustainability', 'Enterprise', 'UX Research'],
             category: 'AI & Sustainability',
-            sectorImage: 'eco-aid-mockup',
-            mockupType: 'app',
+            sectorImage: 'eco-aid-mockup', // CSS class for styling
+            mockupType: 'app', // app, browser, mobile, custom, image
+            thumbnailImage: 'images/placeholder.svg', // Path to thumbnail image
             status: 'Research Phase',
             year: '2024',
             duration: '8 months',
