@@ -215,20 +215,15 @@
                 // Get the device pixel ratio, falling back to 1.
                 this.dpr = window.devicePixelRatio || 1;
 
-                this.drawable = this.canvasElement.getBoundingClientRect();
-
-                this.canvasWidth = this.drawable.width * this.dpr;
-                this.canvasHeight = this.drawable.height * this.dpr;
-
-                this.canvasElement.width = this.canvasWidth;
-                this.canvasElement.height = this.canvasHeight;
-
                 this.mouseX = 0;
                 this.mouseY = 0;
 
                 // Setup Canvas
                 this.canvas = this.canvasElement.getContext("2d");
                 this.canvas.scale(this.dpr, this.dpr);
+                
+                // Initialize with proper viewport sizing
+                this.resize();
             }
 
             onMouseUpdate(e) {
@@ -241,6 +236,11 @@
             init() {
                 this.resize();
                 this.draw(); // Draw initial frame
+                
+                // Debug logging
+                console.log('Canvas size:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
+                console.log('Viewport size:', window.innerWidth, 'x', window.innerHeight);
+                
                 // Listen for Mouse updates
                 document.body.addEventListener(
                     "mousemove",
@@ -251,11 +251,14 @@
             }
 
             resize() {
-                this.drawable = this.canvasElement.getBoundingClientRect();
-                this.canvasWidth = this.drawable.width * this.dpr;
-                this.canvasHeight = this.drawable.height * this.dpr;
+                // Use viewport dimensions instead of getBoundingClientRect
+                this.canvasWidth = window.innerWidth * this.dpr;
+                this.canvasHeight = window.innerHeight * this.dpr;
                 this.canvasElement.width = this.canvasWidth;
                 this.canvasElement.height = this.canvasHeight;
+                
+                // Update drawable for mouse calculations
+                this.drawable = this.canvasElement.getBoundingClientRect();
             }
 
             // Draws the background and calls the function for drawing the dots
@@ -268,8 +271,20 @@
             drawDots() {
                 let size = 2.7; // 1.8x bigger (1.5 * 1.8 = 2.7)
                 let gridSize = 30;
-                for (var i = 0; i < this.canvasWidth / this.dpr / gridSize + 1; i++) {
-                    for (var j = 0; j < this.canvasHeight / this.dpr / gridSize + 1; j++) {
+                
+                // Calculate the actual viewport dimensions in CSS pixels
+                let viewportWidth = window.innerWidth;
+                let viewportHeight = window.innerHeight;
+                
+                // Calculate how many dots we need to cover the entire viewport
+                let dotsX = Math.ceil(viewportWidth / gridSize) + 2; // +2 for buffer
+                let dotsY = Math.ceil(viewportHeight / gridSize) + 2; // +2 for buffer
+                
+                // Debug logging
+                console.log('Drawing dots:', dotsX, 'x', dotsY, 'gridSize:', gridSize);
+                
+                for (var i = 0; i < dotsX; i++) {
+                    for (var j = 0; j < dotsY; j++) {
                         let x = i * gridSize;
                         let y = j * gridSize;
                         let dist = this.pythag(x, y, this.mouseX, this.mouseY);
