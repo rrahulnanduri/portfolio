@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LayerLens - Rahul Nanduri Portfolio</title>
+    <title>Sector Title - Rahul Nanduri Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
@@ -121,9 +121,11 @@
     <script src="js/sector-properties.js"></script>
     <script src="js/sector-page.js"></script>
     <script>
-        // Initialize sector page with LayerLens data
+        // Initialize sector page with specific sector ID
+        // Replace 'sector-id' with the actual sector ID
         document.addEventListener('DOMContentLoaded', function() {
-            window.SectorPage.init('layerlens');
+            const sectorId = 'sector-id'; // This should be set per page
+            window.SectorPage.init(sectorId);
         });
     </script>
 </body>

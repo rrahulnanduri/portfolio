@@ -207,6 +207,9 @@
     </main>
     </div>
 
+    <!-- Sector Properties System -->
+    <script src="js/sector-properties.js"></script>
+    
     <script>
         class DotGrid {
             constructor(container = "dotGrid") {
@@ -307,6 +310,108 @@
 
         const grid = new DotGrid("dotGrid");
         grid.init();
+
+        // Initialize sector rendering
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSectors();
+        });
+
+        function renderSectors() {
+            const sectorProperties = window.SectorProperties;
+            const sectorsContainer = document.querySelector('.projects-grid');
+            
+            if (!sectorsContainer || !sectorProperties) return;
+
+            // Get all sectors
+            const allSectors = sectorProperties.getAllSectors();
+            
+            // Clear existing content
+            sectorsContainer.innerHTML = '';
+
+            // Render each sector
+            allSectors.forEach(sector => {
+                const sectorHTML = createSectorHTML(sector);
+                sectorsContainer.insertAdjacentHTML('beforeend', sectorHTML);
+            });
+        }
+
+        function createSectorHTML(sector) {
+            const mockupHTML = createMockupHTML(sector);
+            
+            return `
+                <a href="${sector.id}.html" class="project-card">
+                    <div class="project-mockup">
+                        ${mockupHTML}
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">${sector.title}</h3>
+                        <p class="project-description">${sector.description}</p>
+                        <div class="project-tags">
+                            ${sector.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        function createMockupHTML(sector) {
+            switch (sector.mockupType) {
+                case 'browser':
+                    return `
+                        <div class="mockup-browser">
+                            <div class="browser-header">
+                                <div class="browser-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <h3>${sector.title}</h3>
+                                <p>${sector.subtitle}</p>
+                            </div>
+                        </div>
+                    `;
+                case 'app':
+                    return `
+                        <div class="mockup-app">
+                            <div class="app-header">
+                                <div class="app-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="app-content">
+                                <h3 style="color: white; margin-bottom: 15px;">${sector.title}</h3>
+                                <button style="background: #4a5568; color: white; padding: 8px 16px; border: none; border-radius: 4px;">
+                                    ${sector.subtitle}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                case 'mobile':
+                    return `
+                        <div class="mockup-mobile">
+                            <div class="mobile-screen">
+                                <div class="mobile-content">
+                                    <h4>${sector.title}</h4>
+                                    <p>${sector.subtitle}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                default:
+                    return `
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #F24405, #F28705); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+                            <div>
+                                <h3 style="margin-bottom: 10px;">${sector.title}</h3>
+                                <p style="opacity: 0.9;">${sector.subtitle}</p>
+                            </div>
+        </div>
+                    `;
+            }
+        }
     </script>
 </body>
 </html>
