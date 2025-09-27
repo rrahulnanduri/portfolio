@@ -258,30 +258,36 @@
             }
 
             resize() {
-                // Force CSS size to match viewport first
+                // Force CSS size to match viewport
                 this.canvasElement.style.width = '100vw';
                 this.canvasElement.style.height = '100vh';
                 
-                // Wait a frame for CSS to apply, then get actual dimensions
-                requestAnimationFrame(() => {
-                    const rect = this.canvasElement.getBoundingClientRect();
-                    const actualWidth = rect.width;
-                    const actualHeight = rect.height;
-                    
-                    // Use the actual rendered dimensions
-                    this.canvasWidth = actualWidth * this.dpr;
-                    this.canvasHeight = actualHeight * this.dpr;
-                    
-                    // Set canvas internal size
-                    this.canvasElement.width = this.canvasWidth;
-                    this.canvasElement.height = this.canvasHeight;
-                    
-                    // Update drawable for mouse calculations
-                    this.drawable = this.canvasElement.getBoundingClientRect();
-                    
-                    // Redraw after resize
-                    this.draw();
-                });
+                // Use screen dimensions to ensure full coverage
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                // Use the larger of screen or viewport dimensions
+                const targetWidth = Math.max(screenWidth, viewportWidth);
+                const targetHeight = Math.max(screenHeight, viewportHeight);
+                
+                // Set canvas internal size to cover full screen
+                this.canvasWidth = targetWidth * this.dpr;
+                this.canvasHeight = targetHeight * this.dpr;
+                
+                this.canvasElement.width = this.canvasWidth;
+                this.canvasElement.height = this.canvasHeight;
+                
+                // Update drawable for mouse calculations
+                this.drawable = this.canvasElement.getBoundingClientRect();
+                
+                console.log('=== FORCED FULL SCREEN ===');
+                console.log('Screen dimensions:', screenWidth, 'x', screenHeight);
+                console.log('Viewport dimensions:', viewportWidth, 'x', viewportHeight);
+                console.log('Target dimensions:', targetWidth, 'x', targetHeight);
+                console.log('Canvas internal:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
+                console.log('=== END FORCED FULL SCREEN ===');
                 
                 console.log('=== EXTENSIVE DEBUG ===');
                 console.log('window.innerWidth:', window.innerWidth);
