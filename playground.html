@@ -17,7 +17,6 @@
             <!-- Wireframe Figure -->
             <g class="wireframe-figure" id="wireframe">
                 <!-- Head -->
-                <circle class="wireframe-node" cx="600" cy="150" r="8" />
                 <line class="wireframe-line" x1="600" y1="150" x2="600" y2="200" />
                 
                 <!-- Torso -->
@@ -26,57 +25,67 @@
                 <!-- Left Arm -->
                 <line class="wireframe-line" x1="600" y1="220" x2="500" y2="180" />
                 <line class="wireframe-line" x1="500" y1="180" x2="450" y2="120" />
-                <circle class="wireframe-node" cx="450" cy="120" r="6" />
                 
                 <!-- Right Arm -->
                 <line class="wireframe-line" x1="600" y1="220" x2="700" y2="180" />
                 <line class="wireframe-line" x1="700" y1="180" x2="750" y2="120" />
-                <circle class="wireframe-node" cx="750" cy="120" r="6" />
                 
                 <!-- Left Leg -->
                 <line class="wireframe-line" x1="600" y1="350" x2="550" y2="500" />
                 <line class="wireframe-line" x1="550" y1="500" x2="550" y2="600" />
-                <circle class="wireframe-node" cx="550" cy="600" r="6" />
                 
                 <!-- Right Leg -->
                 <line class="wireframe-line" x1="600" y1="350" x2="650" y2="500" />
                 <line class="wireframe-line" x1="650" y1="500" x2="650" y2="600" />
-                <circle class="wireframe-node" cx="650" cy="600" r="6" />
                 
                 <!-- Additional Detail Lines -->
                 <line class="wireframe-line detail" x1="580" y1="250" x2="620" y2="250" />
                 <line class="wireframe-line detail" x1="580" y1="300" x2="620" y2="300" />
                 <line class="wireframe-line detail" x1="580" y1="400" x2="620" y2="400" />
-                
-                <!-- Floating Particles -->
-                <circle class="particle" cx="300" cy="200" r="2" />
-                <circle class="particle" cx="900" cy="300" r="2" />
-                <circle class="particle" cx="200" cy="500" r="2" />
-                <circle class="particle" cx="1000" cy="400" r="2" />
-                <circle class="particle" cx="150" cy="300" r="2" />
-                <circle class="particle" cx="1050" cy="200" r="2" />
             </g>
         </svg>
     </div>
 
-
+    <!-- Scrollable Content -->
+    <div class="scroll-content">
+        <div class="content-section">
+            <h2>Interactive Wireframe</h2>
+            <p>Move your cursor around to see the wireframe react. Scroll down to see it move vertically.</p>
+        </div>
+        <div class="content-section">
+            <h2>Scroll Interaction</h2>
+            <p>The wireframe will follow your scroll position, creating a dynamic parallax effect.</p>
+        </div>
+        <div class="content-section">
+            <h2>Cursor Tracking</h2>
+            <p>Watch how the wireframe rotates and scales based on your cursor position.</p>
+        </div>
+        <div class="content-section">
+            <h2>Dynamic Effects</h2>
+            <p>Line thickness and opacity change as you move your cursor closer to the center.</p>
+        </div>
+    </div>
 
     <script>
         // Interactive wireframe cursor tracking
         const wireframe = document.getElementById('wireframe');
-        const particles = document.querySelectorAll('.particle');
         const lines = document.querySelectorAll('.wireframe-line');
-        const nodes = document.querySelectorAll('.wireframe-node');
 
         let mouseX = 0;
         let mouseY = 0;
         let targetX = 0;
         let targetY = 0;
+        let scrollY = 0;
 
         // Mouse movement tracking
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+        });
+
+        // Scroll tracking
+        document.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
         });
 
         // Animation loop
@@ -92,37 +101,21 @@
             const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
             const intensity = Math.min(distance / maxDistance, 1);
 
-            // Transform wireframe based on cursor position
+            // Scroll-based vertical movement
+            const scrollOffset = scrollY * 0.5;
+            
+            // Transform wireframe based on cursor position and scroll
             const rotateX = ((targetY - centerY) / centerY) * 15;
             const rotateY = ((targetX - centerX) / centerX) * 15;
             const scale = 1 + intensity * 0.2;
 
-            wireframe.style.transform = `translate(${(targetX - centerX) * 0.1}px, ${(targetY - centerY) * 0.1}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
-
-            // Animate particles
-            particles.forEach((particle, index) => {
-                const speed = 0.5 + intensity * 0.5;
-                const angle = (Date.now() * 0.001 + index) * speed;
-                const radius = 50 + intensity * 100;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
-                
-                particle.style.transform = `translate(${x}px, ${y}px)`;
-                particle.style.opacity = 0.3 + intensity * 0.7;
-            });
+            wireframe.style.transform = `translate(${(targetX - centerX) * 0.1}px, ${(targetY - centerY) * 0.1 + scrollOffset}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
 
             // Animate lines with cursor influence
             lines.forEach((line, index) => {
                 const strokeWidth = 1 + intensity * 2;
                 line.style.strokeWidth = strokeWidth;
                 line.style.opacity = 0.6 + intensity * 0.4;
-            });
-
-            // Animate nodes
-            nodes.forEach((node, index) => {
-                const nodeScale = 1 + intensity * 0.5;
-                node.style.transform = `scale(${nodeScale})`;
-                node.style.opacity = 0.7 + intensity * 0.3;
             });
 
             requestAnimationFrame(animate);
