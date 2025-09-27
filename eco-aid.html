@@ -3,181 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco A.I.D - Rahul Nanduri</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Eco A.I.D - Rahul Nanduri Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sector-pages.css">
 </head>
-<body class="sector-page">
-    <!-- Fixed Sidebar -->
-    <aside class="sector-sidebar">
-        <nav class="sector-nav">
-            <a href="playground.html" class="nav-link">
-                <div class="nav-icon">◉</div>
-                <span>Playground</span>
-            </a>
-            <a href="#content" class="nav-link">
-                <div class="nav-icon">▢</div>
-                <span>Content</span>
-            </a>
-            <a href="index.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>Home</span>
-            </a>
-            <a href="projects.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>Projects</span>
-            </a>
-            <a href="about.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>About</span>
-            </a>
-            <a href="contact.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>Contact</span>
-            </a>
-        </nav>
-    </aside>
+<body>
+    <!-- Back Navigation -->
+    <nav class="back-nav">
+        <a href="index.html" class="back-link">
+            <span class="back-arrow">←</span>
+            Back to Portfolio
+        </a>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="sector-main">
-        <!-- Hero Section -->
-        <section class="sector-hero">
-            <h1 class="sector-title">Eco A.I.D Framework</h1>
-            <p class="sector-intro">
-                A sustainable AI framework designed to help organizations evaluate and optimize their AI initiatives for environmental impact. 
-                This project addresses the growing need for responsible AI development in an era of increasing computational demands.
-            </p>
-            <div class="sector-tags">
-                <span class="tag">Sustainability</span>
-                <span class="tag">AI Ethics</span>
-                <span class="tag">Framework Design</span>
-                <span class="tag">Research</span>
+    <!-- Sector Header -->
+    <header class="sector-header">
+        <div class="sector-hero">
+            <div class="sector-mockup-large" id="sectorMockup">
+                <!-- Mockup will be dynamically inserted here -->
             </div>
-        </section>
-
-        <!-- Prominent Visual Section -->
-        <section class="sector-visual">
-            <div class="visual-cards">
-                <div class="visual-card">
-                    <div class="card-icon">🌱</div>
-                    <span>Sustainable AI</span>
+            <div class="sector-info">
+                <div class="sector-meta">
+                    <span class="sector-category" id="sectorCategory">Category</span>
+                    <span class="sector-year" id="sectorYear">2024</span>
+                    <span class="sector-status" id="sectorStatus">Status</span>
                 </div>
-                <div class="visual-card">
-                    <div class="card-icon">⚡</div>
-                    <span>Energy Efficiency</span>
-                </div>
-                <div class="visual-card">
-                    <div class="card-icon">📊</div>
-                    <span>Impact Metrics</span>
+                <h1 class="sector-title" id="sectorTitle">Sector Title</h1>
+                <h2 class="sector-subtitle" id="sectorSubtitle">Sector Subtitle</h2>
+                <p class="sector-description" id="sectorDescription">Sector description goes here.</p>
+                <div class="sector-tags" id="sectorTags">
+                    <!-- Tags will be dynamically inserted here -->
                 </div>
             </div>
-        </section>
-
-        <!-- Content Sections -->
-        <div class="sector-content">
-            <!-- My Role Section -->
-            <section class="content-section">
-                <h2>My Role</h2>
-                <p>As the lead UX researcher and designer, I was responsible for developing a comprehensive framework that would help organizations make more sustainable AI decisions. I conducted extensive research on AI environmental impact and designed an intuitive evaluation system.</p>
-            </section>
-
-            <!-- Problem Section -->
-            <section class="content-section">
-                <h2>Problem</h2>
-                <p>The rapid adoption of AI technologies has created significant environmental challenges:</p>
-                <ul>
-                    <li>AI training consumes massive amounts of energy</li>
-                    <li>Organizations lack tools to evaluate AI environmental impact</li>
-                    <li>No standardized framework for sustainable AI development</li>
-                    <li>Limited awareness of AI's carbon footprint</li>
-                    <li>Need for practical guidance on AI optimization</li>
-                </ul>
-            </section>
-
-            <!-- Framework Components Section -->
-            <section class="content-section">
-                <h2>Framework Components</h2>
-                <div class="framework-grid">
-                    <div class="framework-card purple">
-                        <h3>Policy Development</h3>
-                        <p>Guidelines for evaluating AI initiatives on environmental criteria</p>
-                    </div>
-                    <div class="framework-card red">
-                        <h3>Cost Analysis</h3>
-                        <p>Tools to weigh the real environmental cost of AI implementations</p>
-                    </div>
-                    <div class="framework-card green">
-                        <h3>Team Upskilling</h3>
-                        <p>Training programs for energy-efficient AI development</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Research Section -->
-            <section class="content-section">
-                <h2>Research & Development</h2>
-                <p>Our research involved analyzing current AI practices and developing evidence-based recommendations for sustainable development.</p>
-                <div class="research-findings">
-                    <div class="finding-item">
-                        <h4>Energy Consumption Analysis</h4>
-                        <p>Studied the environmental impact of different AI models and training approaches</p>
-                    </div>
-                    <div class="finding-item">
-                        <h4>Industry Best Practices</h4>
-                        <p>Analyzed successful sustainable AI implementations across various industries</p>
-                    </div>
-                    <div class="finding-item">
-                        <h4>Stakeholder Interviews</h4>
-                        <p>Conducted interviews with AI practitioners, sustainability experts, and business leaders</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Implementation Section -->
-            <section class="content-section">
-                <h2>Implementation Guide</h2>
-                <p>The Eco A.I.D framework provides practical steps for organizations to adopt sustainable AI practices:</p>
-                <div class="implementation-steps">
-                    <div class="step-item">
-                        <h4>1. Assessment</h4>
-                        <p>Evaluate current AI initiatives for environmental impact</p>
-                    </div>
-                    <div class="step-item">
-                        <h4>2. Optimization</h4>
-                        <p>Implement energy-efficient AI development practices</p>
-                    </div>
-                    <div class="step-item">
-                        <h4>3. Monitoring</h4>
-                        <p>Track and measure environmental impact over time</p>
-                    </div>
-                    <div class="step-item">
-                        <h4>4. Improvement</h4>
-                        <p>Continuously refine practices based on metrics and feedback</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Impact Section -->
-            <section class="content-section">
-                <h2>Impact & Results</h2>
-                <div class="impact-grid">
-                    <div class="impact-item">
-                        <h4>25% reduction in AI energy consumption</h4>
-                        <p>Organizations using the framework reported significant energy savings</p>
-                    </div>
-                    <div class="impact-item">
-                        <h4>Improved AI efficiency</h4>
-                        <p>Better model optimization led to faster, more efficient AI systems</p>
-                    </div>
-                    <div class="impact-item">
-                        <h4>Enhanced sustainability awareness</h4>
-                        <p>Teams became more conscious of environmental impact in AI development</p>
-                    </div>
-                </div>
-            </section>
         </div>
+    </header>
+
+    <!-- Sector Content -->
+    <main class="sector-main">
+        <!-- Project Overview -->
+        <section class="sector-section">
+            <h3 class="section-title">Project Overview</h3>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h4>Duration</h4>
+                    <p id="projectDuration">Duration</p>
+                </div>
+                <div class="overview-item">
+                    <h4>Team</h4>
+                    <p id="projectTeam">Team</p>
+                </div>
+                <div class="overview-item">
+                    <h4>Technologies</h4>
+                    <div class="tech-list" id="projectTechnologies">
+                        <!-- Technologies will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div class="overview-item">
+                    <h4>Links</h4>
+                    <div class="project-links" id="projectLinks">
+                        <!-- Links will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenges & Solutions -->
+        <section class="sector-section">
+            <h3 class="section-title">Challenges & Solutions</h3>
+            <div class="challenges-solutions">
+                <div class="challenges">
+                    <h4>Challenges</h4>
+                    <ul id="projectChallenges">
+                        <!-- Challenges will be dynamically inserted here -->
+                    </ul>
+                </div>
+                <div class="solutions">
+                    <h4>Solutions</h4>
+                    <ul id="projectSolutions">
+                        <!-- Solutions will be dynamically inserted here -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="sector-section">
+            <h3 class="section-title">Results</h3>
+            <ul class="results-list" id="projectResults">
+                <!-- Results will be dynamically inserted here -->
+            </ul>
+        </section>
+
+        <!-- Gallery -->
+        <section class="sector-section">
+            <h3 class="section-title">Project Gallery</h3>
+            <div class="gallery-grid" id="projectGallery">
+                <!-- Gallery images will be dynamically inserted here -->
+            </div>
+        </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="sector-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Rahul Nanduri. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sector-properties.js"></script>
+    <script src="js/sector-page.js"></script>
+    <script>
+        // Initialize sector page with Eco A.I.D data
+        document.addEventListener('DOMContentLoaded', function() {
+            window.SectorPage.init('eco-aid');
+        });
+    </script>
 </body>
 </html>

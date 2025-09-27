@@ -3,181 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neptune Studio - Rahul Nanduri</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Neptune Studio - Rahul Nanduri Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/sector-pages.css">
 </head>
-<body class="sector-page">
-    <!-- Fixed Sidebar -->
-    <aside class="sector-sidebar">
-        <nav class="sector-nav">
-            <a href="playground.html" class="nav-link">
-                <div class="nav-icon">◉</div>
-                <span>Playground</span>
-            </a>
-            <a href="#content" class="nav-link">
-                <div class="nav-icon">▢</div>
-                <span>Content</span>
-            </a>
-            <a href="index.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>Home</span>
-            </a>
-            <a href="projects.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>Projects</span>
-            </a>
-            <a href="about.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>About</span>
-            </a>
-            <a href="contact.html" class="nav-link">
-                <div class="nav-icon">◯</div>
-                <span>Contact</span>
-            </a>
-        </nav>
-    </aside>
+<body>
+    <!-- Back Navigation -->
+    <nav class="back-nav">
+        <a href="index.html" class="back-link">
+            <span class="back-arrow">←</span>
+            Back to Portfolio
+        </a>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="sector-main">
-        <!-- Hero Section -->
-        <section class="sector-hero">
-            <h1 class="sector-title">Neptune Studio</h1>
-            <p class="sector-intro">
-                Brought a music studio's creative vision to life through immersive web design. 
-                This project focused on creating a digital experience that captures the energy and creativity of a professional recording studio.
-            </p>
-            <div class="sector-tags">
-                <span class="tag">Music Industry</span>
-                <span class="tag">Visual Design</span>
-                <span class="tag">Brand Identity</span>
-                <span class="tag">Web Design</span>
+    <!-- Sector Header -->
+    <header class="sector-header">
+        <div class="sector-hero">
+            <div class="sector-mockup-large" id="sectorMockup">
+                <!-- Mockup will be dynamically inserted here -->
             </div>
-        </section>
-
-        <!-- Prominent Visual Section -->
-        <section class="sector-visual">
-            <div class="visual-cards">
-                <div class="visual-card">
-                    <div class="card-icon">🎵</div>
-                    <span>Music Production</span>
+            <div class="sector-info">
+                <div class="sector-meta">
+                    <span class="sector-category" id="sectorCategory">Category</span>
+                    <span class="sector-year" id="sectorYear">2024</span>
+                    <span class="sector-status" id="sectorStatus">Status</span>
                 </div>
-                <div class="visual-card">
-                    <div class="card-icon">🎤</div>
-                    <span>Recording Studio</span>
-                </div>
-                <div class="visual-card">
-                    <div class="card-icon">🎧</div>
-                    <span>Audio Engineering</span>
+                <h1 class="sector-title" id="sectorTitle">Sector Title</h1>
+                <h2 class="sector-subtitle" id="sectorSubtitle">Sector Subtitle</h2>
+                <p class="sector-description" id="sectorDescription">Sector description goes here.</p>
+                <div class="sector-tags" id="sectorTags">
+                    <!-- Tags will be dynamically inserted here -->
                 </div>
             </div>
-        </section>
-
-        <!-- Content Sections -->
-        <div class="sector-content">
-            <!-- My Role Section -->
-            <section class="content-section">
-                <h2>My Role</h2>
-                <p>As the lead visual designer, I was responsible for creating an immersive web experience that would showcase Neptune Studio's capabilities and attract new clients. I worked closely with the studio team to understand their brand and translate it into a compelling digital presence.</p>
-            </section>
-
-            <!-- Studio Vision Section -->
-            <section class="content-section">
-                <h2>Studio Vision</h2>
-                <p>Neptune Studio needed a digital presence that would:</p>
-                <ul>
-                    <li>Showcase their state-of-the-art equipment</li>
-                    <li>Highlight their experienced engineers</li>
-                    <li>Create an immersive experience for potential clients</li>
-                    <li>Reflect the creative energy of the studio</li>
-                    <li>Make booking sessions easy and intuitive</li>
-                </ul>
-            </section>
-
-            <!-- Visual Design Section -->
-            <section class="content-section">
-                <h2>Visual Design</h2>
-                <p>We created a dark, atmospheric design that reflects the studio's professional environment while maintaining an approachable, creative feel.</p>
-                <div class="design-elements">
-                    <div class="design-element">
-                        <h4>Dark Theme</h4>
-                        <p>Deep blacks and blues create the studio atmosphere</p>
-                    </div>
-                    <div class="design-element">
-                        <h4>Dynamic Typography</h4>
-                        <p>Bold, modern fonts that convey energy and professionalism</p>
-                    </div>
-                    <div class="design-element">
-                        <h4>Immersive Media</h4>
-                        <p>High-quality photos and videos showcase the studio space</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Key Features Section -->
-            <section class="content-section">
-                <h2>Key Features</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h3>Virtual Studio Tour</h3>
-                        <p>Interactive 360-degree tour of the studio facilities</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Equipment Showcase</h3>
-                        <p>Detailed views of professional recording equipment</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Engineer Profiles</h3>
-                        <p>Meet the team behind the music production</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Booking System</h3>
-                        <p>Easy online booking for studio sessions</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- User Experience Section -->
-            <section class="content-section">
-                <h2>User Experience</h2>
-                <p>We focused on creating an engaging experience that would make potential clients feel the energy and professionalism of Neptune Studio.</p>
-                <div class="ux-features">
-                    <div class="ux-feature">
-                        <h4>Immersive Navigation</h4>
-                        <p>Smooth transitions and atmospheric animations</p>
-                    </div>
-                    <div class="ux-feature">
-                        <h4>Audio Integration</h4>
-                        <p>Background music and sound effects enhance the experience</p>
-                    </div>
-                    <div class="ux-feature">
-                        <h4>Mobile Optimization</h4>
-                        <p>Responsive design that works on all devices</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Results Section -->
-            <section class="content-section">
-                <h2>Results</h2>
-                <div class="results-grid">
-                    <div class="result-item">
-                        <h4>300% increase in inquiries</h4>
-                        <p>New website generated significantly more client interest</p>
-                    </div>
-                    <div class="result-item">
-                        <h4>50% faster booking process</h4>
-                        <p>Streamlined booking system improved client experience</p>
-                    </div>
-                    <div class="result-item">
-                        <h4>Enhanced brand perception</h4>
-                        <p>Professional website elevated the studio's market position</p>
-                    </div>
-                </div>
-            </section>
         </div>
+    </header>
+
+    <!-- Sector Content -->
+    <main class="sector-main">
+        <!-- Project Overview -->
+        <section class="sector-section">
+            <h3 class="section-title">Project Overview</h3>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h4>Duration</h4>
+                    <p id="projectDuration">Duration</p>
+                </div>
+                <div class="overview-item">
+                    <h4>Team</h4>
+                    <p id="projectTeam">Team</p>
+                </div>
+                <div class="overview-item">
+                    <h4>Technologies</h4>
+                    <div class="tech-list" id="projectTechnologies">
+                        <!-- Technologies will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div class="overview-item">
+                    <h4>Links</h4>
+                    <div class="project-links" id="projectLinks">
+                        <!-- Links will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenges & Solutions -->
+        <section class="sector-section">
+            <h3 class="section-title">Challenges & Solutions</h3>
+            <div class="challenges-solutions">
+                <div class="challenges">
+                    <h4>Challenges</h4>
+                    <ul id="projectChallenges">
+                        <!-- Challenges will be dynamically inserted here -->
+                    </ul>
+                </div>
+                <div class="solutions">
+                    <h4>Solutions</h4>
+                    <ul id="projectSolutions">
+                        <!-- Solutions will be dynamically inserted here -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="sector-section">
+            <h3 class="section-title">Results</h3>
+            <ul class="results-list" id="projectResults">
+                <!-- Results will be dynamically inserted here -->
+            </ul>
+        </section>
+
+        <!-- Gallery -->
+        <section class="sector-section">
+            <h3 class="section-title">Project Gallery</h3>
+            <div class="gallery-grid" id="projectGallery">
+                <!-- Gallery images will be dynamically inserted here -->
+            </div>
+        </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="sector-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Rahul Nanduri. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sector-properties.js"></script>
+    <script src="js/sector-page.js"></script>
+    <script>
+        // Initialize sector page with Neptune Studio data
+        document.addEventListener('DOMContentLoaded', function() {
+            window.SectorPage.init('neptune-studio');
+        });
+    </script>
 </body>
 </html>
