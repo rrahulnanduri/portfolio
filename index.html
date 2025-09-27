@@ -282,23 +282,17 @@
             }
 
             resize() {
-                // Force CSS size to match viewport
-                this.canvasElement.style.width = '100vw';
-                this.canvasElement.style.height = '100vh';
-                
-                // Use screen dimensions to ensure full coverage
+                // Force canvas to full screen dimensions using JavaScript
                 const screenWidth = window.screen.width;
                 const screenHeight = window.screen.height;
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
                 
-                // Use the larger of screen or viewport dimensions
-                const targetWidth = Math.max(screenWidth, viewportWidth);
-                const targetHeight = Math.max(screenHeight, viewportHeight);
+                // Set CSS size to full screen dimensions
+                this.canvasElement.style.width = screenWidth + 'px';
+                this.canvasElement.style.height = screenHeight + 'px';
                 
-                // Set canvas internal size to cover full screen
-                this.canvasWidth = targetWidth * this.dpr;
-                this.canvasHeight = targetHeight * this.dpr;
+                // Set canvas internal size to match
+                this.canvasWidth = screenWidth * this.dpr;
+                this.canvasHeight = screenHeight * this.dpr;
                 
                 this.canvasElement.width = this.canvasWidth;
                 this.canvasElement.height = this.canvasHeight;
@@ -308,9 +302,9 @@
                 
                 console.log('=== FORCED FULL SCREEN ===');
                 console.log('Screen dimensions:', screenWidth, 'x', screenHeight);
-                console.log('Viewport dimensions:', viewportWidth, 'x', viewportHeight);
-                console.log('Target dimensions:', targetWidth, 'x', targetHeight);
+                console.log('Canvas CSS size:', this.canvasElement.style.width, 'x', this.canvasElement.style.height);
                 console.log('Canvas internal:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
+                console.log('Canvas element size:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
                 console.log('=== END FORCED FULL SCREEN ===');
                 
                 console.log('=== EXTENSIVE DEBUG ===');
