@@ -234,12 +234,19 @@
             }
 
             init() {
+                // Wait for DOM to be ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => this.init());
+                    return;
+                }
+                
                 this.resize();
                 this.draw(); // Draw initial frame
                 
                 // Debug logging
                 console.log('Canvas size:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
                 console.log('Viewport size:', window.innerWidth, 'x', window.innerHeight);
+                console.log('Canvas element size:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
                 
                 // Listen for Mouse updates
                 document.body.addEventListener(
@@ -272,15 +279,16 @@
                 let size = 2.7; // 1.8x bigger (1.5 * 1.8 = 2.7)
                 let gridSize = 30;
                 
-                // Calculate the actual viewport dimensions in CSS pixels
-                let viewportWidth = window.innerWidth;
-                let viewportHeight = window.innerHeight;
+                // Use the actual canvas dimensions in CSS pixels (not viewport)
+                let canvasWidth = this.canvasWidth / this.dpr;
+                let canvasHeight = this.canvasHeight / this.dpr;
                 
-                // Calculate how many dots we need to cover the entire viewport
-                let dotsX = Math.ceil(viewportWidth / gridSize) + 2; // +2 for buffer
-                let dotsY = Math.ceil(viewportHeight / gridSize) + 2; // +2 for buffer
+                // Calculate how many dots we need to cover the entire canvas
+                let dotsX = Math.ceil(canvasWidth / gridSize) + 2; // +2 for buffer
+                let dotsY = Math.ceil(canvasHeight / gridSize) + 2; // +2 for buffer
                 
                 // Debug logging
+                console.log('Canvas dimensions:', canvasWidth, 'x', canvasHeight);
                 console.log('Drawing dots:', dotsX, 'x', dotsY, 'gridSize:', gridSize);
                 
                 for (var i = 0; i < dotsX; i++) {
