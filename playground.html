@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground - Rahul Nanduri</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="playground-page">
+    <!-- Header -->
+    <header class="playground-header">
+        <div class="header-left">
+            <div class="status-dot"></div>
+            <span class="header-text">EXPERIENTIAL | BRANDING | DIGITAL</span>
+        </div>
+        <div class="header-center">
+            <span class="location">NEW YORK CITY</span>
+            <span class="weather">79° OVERCAST</span>
+        </div>
+        <div class="header-right">
+            <span class="header-text">About Us</span>
+            <span class="header-text">Contact</span>
+            <div class="status-dot"></div>
+        </div>
+    </header>
+
+    <!-- Interactive Wireframe Background -->
+    <div class="wireframe-container">
+        <svg class="wireframe-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+            <!-- Wireframe Figure -->
+            <g class="wireframe-figure" id="wireframe">
+                <!-- Head -->
+                <circle class="wireframe-node" cx="600" cy="150" r="8" />
+                <line class="wireframe-line" x1="600" y1="150" x2="600" y2="200" />
+                
+                <!-- Torso -->
+                <line class="wireframe-line" x1="600" y1="200" x2="600" y2="350" />
+                
+                <!-- Left Arm -->
+                <line class="wireframe-line" x1="600" y1="220" x2="500" y2="180" />
+                <line class="wireframe-line" x1="500" y1="180" x2="450" y2="120" />
+                <circle class="wireframe-node" cx="450" cy="120" r="6" />
+                
+                <!-- Right Arm -->
+                <line class="wireframe-line" x1="600" y1="220" x2="700" y2="180" />
+                <line class="wireframe-line" x1="700" y1="180" x2="750" y2="120" />
+                <circle class="wireframe-node" cx="750" cy="120" r="6" />
+                
+                <!-- Left Leg -->
+                <line class="wireframe-line" x1="600" y1="350" x2="550" y2="500" />
+                <line class="wireframe-line" x1="550" y1="500" x2="550" y2="600" />
+                <circle class="wireframe-node" cx="550" cy="600" r="6" />
+                
+                <!-- Right Leg -->
+                <line class="wireframe-line" x1="600" y1="350" x2="650" y2="500" />
+                <line class="wireframe-line" x1="650" y1="500" x2="650" y2="600" />
+                <circle class="wireframe-node" cx="650" cy="600" r="6" />
+                
+                <!-- Additional Detail Lines -->
+                <line class="wireframe-line detail" x1="580" y1="250" x2="620" y2="250" />
+                <line class="wireframe-line detail" x1="580" y1="300" x2="620" y2="300" />
+                <line class="wireframe-line detail" x1="580" y1="400" x2="620" y2="400" />
+                
+                <!-- Floating Particles -->
+                <circle class="particle" cx="300" cy="200" r="2" />
+                <circle class="particle" cx="900" cy="300" r="2" />
+                <circle class="particle" cx="200" cy="500" r="2" />
+                <circle class="particle" cx="1000" cy="400" r="2" />
+                <circle class="particle" cx="150" cy="300" r="2" />
+                <circle class="particle" cx="1050" cy="200" r="2" />
+            </g>
+        </svg>
+    </div>
+
+    <!-- Content Overlay -->
+    <div class="playground-content">
+        <div class="content-left">
+            <div class="vertical-text">EXPERIENTIAL</div>
+            <div class="vertical-text">BRANDING</div>
+            <div class="vertical-text">DIGITAL</div>
+        </div>
+        
+        <div class="content-right">
+            <div class="vertical-text">13:01:20</div>
+            <div class="vertical-text">40.7128° N, 74.0060° W</div>
+            <div class="vertical-text">MADE WITH LOVE ♥</div>
+        </div>
+    </div>
+
+    <!-- Bottom Branding -->
+    <div class="bottom-branding">
+        <div class="brand-logo">
+            <h1 class="brand-name">RAHUL</h1>
+            <p class="brand-subtitle">EXPERIENCE STUDIO</p>
+            <div class="brand-accent"></div>
+        </div>
+    </div>
+
+    <!-- Cursor Tracker -->
+    <div class="cursor-tracker" id="cursorTracker"></div>
+
+    <script>
+        // Interactive wireframe cursor tracking
+        const wireframe = document.getElementById('wireframe');
+        const cursorTracker = document.getElementById('cursorTracker');
+        const particles = document.querySelectorAll('.particle');
+        const lines = document.querySelectorAll('.wireframe-line');
+        const nodes = document.querySelectorAll('.wireframe-node');
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        // Mouse movement tracking
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Update cursor tracker position
+            cursorTracker.style.left = mouseX + 'px';
+            cursorTracker.style.top = mouseY + 'px';
+        });
+
+        // Animation loop
+        function animate() {
+            // Smooth cursor tracking
+            targetX += (mouseX - targetX) * 0.1;
+            targetY += (mouseY - targetY) * 0.1;
+
+            // Calculate distance from center
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const distance = Math.sqrt((targetX - centerX) ** 2 + (targetY - centerY) ** 2);
+            const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
+            const intensity = Math.min(distance / maxDistance, 1);
+
+            // Transform wireframe based on cursor position
+            const rotateX = ((targetY - centerY) / centerY) * 15;
+            const rotateY = ((targetX - centerX) / centerX) * 15;
+            const scale = 1 + intensity * 0.2;
+
+            wireframe.style.transform = `translate(${(targetX - centerX) * 0.1}px, ${(targetY - centerY) * 0.1}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+
+            // Animate particles
+            particles.forEach((particle, index) => {
+                const speed = 0.5 + intensity * 0.5;
+                const angle = (Date.now() * 0.001 + index) * speed;
+                const radius = 50 + intensity * 100;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                particle.style.transform = `translate(${x}px, ${y}px)`;
+                particle.style.opacity = 0.3 + intensity * 0.7;
+            });
+
+            // Animate lines with cursor influence
+            lines.forEach((line, index) => {
+                const strokeWidth = 1 + intensity * 2;
+                line.style.strokeWidth = strokeWidth;
+                line.style.opacity = 0.6 + intensity * 0.4;
+            });
+
+            // Animate nodes
+            nodes.forEach((node, index) => {
+                const nodeScale = 1 + intensity * 0.5;
+                node.style.transform = `scale(${nodeScale})`;
+                node.style.opacity = 0.7 + intensity * 0.3;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Start animation
+        animate();
+
+        // Add hover effects
+        document.addEventListener('mouseenter', () => {
+            document.body.classList.add('cursor-active');
+        });
+
+        document.addEventListener('mouseleave', () => {
+            document.body.classList.remove('cursor-active');
+        });
+    </script>
+</body>
+</html>
