@@ -17,41 +17,14 @@ body {
 
 /* Interactive Dot Grid Background */
 .dot-grid-canvas {
-    position: fixed !important;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     z-index: -1;
     pointer-events: none;
-    display: block;
-    border: 2px solid green !important;
     background: transparent;
-    transform: translateZ(0);
-}
-
-/* Full Screen Button */
-.fullscreen-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: #F24405;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-family: 'VT323', monospace;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.fullscreen-btn:hover {
-    background: #F25C05;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Container Layout */
@@ -178,8 +151,9 @@ body {
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(180deg, transparent 0%, #F24405 100%);
-    opacity: 0.1;
+    background: #F24405;
+    opacity: 1;
+    border-radius: 0 0 12px 12px;
     pointer-events: none;
 }
 
@@ -392,12 +366,13 @@ body {
 }
 
 .tag {
-    background: #f0f0f0;
-    color: #666;
+    background: rgba(255, 255, 255, 0.9);
+    color: #F24405;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive Design */

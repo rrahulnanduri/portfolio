@@ -13,9 +13,6 @@
     <!-- Interactive Dot Grid Background -->
     <canvas id="dotGrid" class="dot-grid-canvas"></canvas>
     
-    <!-- Full Screen Toggle Button -->
-    <button id="fullscreenBtn" class="fullscreen-btn">Enter Full Screen</button>
-    
     <div class="container">
         <!-- Left Sidebar -->
         <aside class="sidebar">
@@ -214,219 +211,85 @@
         class DotGrid {
             constructor(container = "dotGrid") {
                 this.canvasElement = document.getElementById(container);
-
-                // Get the device pixel ratio, falling back to 1.
                 this.dpr = window.devicePixelRatio || 1;
-
                 this.mouseX = 0;
                 this.mouseY = 0;
-
-                // Setup Canvas
                 this.canvas = this.canvasElement.getContext("2d");
                 this.canvas.scale(this.dpr, this.dpr);
-                
-                // Initialize with proper viewport sizing
                 this.resize();
             }
 
             onMouseUpdate(e) {
                 this.mouseX = e.pageX - this.drawable.left;
                 this.mouseY = e.pageY - this.drawable.top;
-
                 window.requestAnimationFrame(this.draw.bind(this));
             }
 
             init() {
-                // Wait for DOM to be ready
                 if (document.readyState === 'loading') {
                     document.addEventListener('DOMContentLoaded', () => this.init());
                     return;
                 }
                 
-                // COMPREHENSIVE DEBUGGING
-                console.log('=== COMPREHENSIVE DEBUG START ===');
-                console.log('Browser:', navigator.userAgent);
-                console.log('Device pixel ratio:', this.dpr);
-                console.log('Screen size:', window.screen.width, 'x', window.screen.height);
-                console.log('Screen avail size:', window.screen.availWidth, 'x', window.screen.availHeight);
-                console.log('Window outer size:', window.outerWidth, 'x', window.outerHeight);
-                console.log('Window inner size:', window.innerWidth, 'x', window.innerHeight);
-                console.log('Document client size:', document.documentElement.clientWidth, 'x', document.documentElement.clientHeight);
-                console.log('Document scroll size:', document.documentElement.scrollWidth, 'x', document.documentElement.scrollHeight);
-                console.log('Canvas element before resize:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
-                console.log('Canvas element getBoundingClientRect before:', this.canvasElement.getBoundingClientRect());
-                
                 this.resize();
-                this.draw(); // Draw initial frame
+                this.draw();
                 
-                // More debugging after resize
-                console.log('Canvas element after resize:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
-                console.log('Canvas element getBoundingClientRect after:', this.canvasElement.getBoundingClientRect());
-                console.log('Canvas internal size:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
-                console.log('Canvas CSS computed style:', window.getComputedStyle(this.canvasElement).width, 'x', window.getComputedStyle(this.canvasElement).height);
-                console.log('=== COMPREHENSIVE DEBUG END ===');
-                
-                // Listen for Mouse updates
-                document.body.addEventListener(
-                    "mousemove",
-                    this.onMouseUpdate.bind(this),
-                    false
-                );
+                document.body.addEventListener("mousemove", this.onMouseUpdate.bind(this), false);
                 window.addEventListener('resize', this.resize.bind(this));
-                
-                // Test if canvas is actually drawing
-                setTimeout(() => {
-                    console.log('=== CANVAS DRAWING TEST ===');
-                    const ctx = this.canvas.getContext('2d');
-                    ctx.fillStyle = 'yellow';
-                    ctx.fillRect(10, 10, 50, 50);
-                    console.log('Drew yellow test square at (10,10)');
-                }, 1000);
             }
 
             resize() {
-                // Use viewport dimensions (100vw/100vh will work in full-screen mode)
                 const viewportWidth = window.innerWidth;
                 const viewportHeight = window.innerHeight;
                 
-                // Set CSS size to viewport dimensions
                 this.canvasElement.style.width = viewportWidth + 'px';
                 this.canvasElement.style.height = viewportHeight + 'px';
                 
-                // Set canvas internal size to match viewport
                 this.canvasWidth = viewportWidth * this.dpr;
                 this.canvasHeight = viewportHeight * this.dpr;
                 
                 this.canvasElement.width = this.canvasWidth;
                 this.canvasElement.height = this.canvasHeight;
                 
-                // Update drawable for mouse calculations
                 this.drawable = this.canvasElement.getBoundingClientRect();
-                
-                console.log('=== CANVAS RESIZE ===');
-                console.log('Viewport dimensions:', viewportWidth, 'x', viewportHeight);
-                console.log('Canvas CSS size:', this.canvasElement.style.width, 'x', this.canvasElement.style.height);
-                console.log('Canvas internal:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
-                console.log('Canvas element size:', this.canvasElement.offsetWidth, 'x', this.canvasElement.offsetHeight);
-                console.log('=== END CANVAS RESIZE ===');
-                
-                console.log('=== EXTENSIVE DEBUG ===');
-                console.log('window.innerWidth:', window.innerWidth);
-                console.log('window.innerHeight:', window.innerHeight);
-                console.log('window.screen.width:', window.screen.width);
-                console.log('window.screen.height:', window.screen.height);
-                console.log('document.documentElement.clientWidth:', document.documentElement.clientWidth);
-                console.log('document.documentElement.clientHeight:', document.documentElement.clientHeight);
-                console.log('Canvas element offsetWidth:', this.canvasElement.offsetWidth);
-                console.log('Canvas element offsetHeight:', this.canvasElement.offsetHeight);
-                console.log('Canvas element getBoundingClientRect:', this.canvasElement.getBoundingClientRect());
-                console.log('Canvas internal size:', this.canvasWidth / this.dpr, 'x', this.canvasHeight / this.dpr);
-                console.log('Device pixel ratio:', this.dpr);
-                console.log('=== END EXTENSIVE DEBUG ===');
             }
 
-            // Draws the background and calls the function for drawing the dots
             draw() {
                 this.canvas.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-                
-                // Draw a test border to see canvas bounds
-                this.canvas.strokeStyle = 'red';
-                this.canvas.lineWidth = 3;
-                this.canvas.strokeRect(0, 0, this.canvasWidth / this.dpr, this.canvasHeight / this.dpr);
-                
-                // Draw corner markers
-                this.canvas.fillStyle = 'blue';
-                this.canvas.fillRect(0, 0, 10, 10);
-                this.canvas.fillRect((this.canvasWidth / this.dpr) - 10, 0, 10, 10);
-                this.canvas.fillRect(0, (this.canvasHeight / this.dpr) - 10, 10, 10);
-                this.canvas.fillRect((this.canvasWidth / this.dpr) - 10, (this.canvasHeight / this.dpr) - 10, 10, 10);
-                
-                // Draw center cross to see if canvas is working
-                this.canvas.strokeStyle = 'purple';
-                this.canvas.lineWidth = 2;
-                const centerX = (this.canvasWidth / this.dpr) / 2;
-                const centerY = (this.canvasHeight / this.dpr) / 2;
-                this.canvas.beginPath();
-                this.canvas.moveTo(centerX - 20, centerY);
-                this.canvas.lineTo(centerX + 20, centerY);
-                this.canvas.moveTo(centerX, centerY - 20);
-                this.canvas.lineTo(centerX, centerY + 20);
-                this.canvas.stroke();
-                
-                // Draw dimension text
-                this.canvas.fillStyle = 'black';
-                this.canvas.font = '16px Arial';
-                this.canvas.fillText(`Canvas: ${Math.round(this.canvasWidth / this.dpr)}x${Math.round(this.canvasHeight / this.dpr)}`, 20, 30);
-                this.canvas.fillText(`Screen: ${window.screen.width}x${window.screen.height}`, 20, 50);
-                this.canvas.fillText(`Viewport: ${window.innerWidth}x${window.innerHeight}`, 20, 70);
-                
                 this.drawDots();
             }
 
-            // i and j function as x and y when drawing the dot grid.
             drawDots() {
-                let size = 2.7; // 1.8x bigger (1.5 * 1.8 = 2.7)
+                let size = 2.7;
                 let gridSize = 30;
                 
-                // Use actual canvas dimensions for full coverage
                 let canvasWidth = this.canvasWidth / this.dpr;
                 let canvasHeight = this.canvasHeight / this.dpr;
                 
-                // Calculate grid bounds
                 let maxI = Math.ceil(canvasWidth / gridSize) + 1;
                 let maxJ = Math.ceil(canvasHeight / gridSize) + 1;
                 
-                // Debug logging
-                console.log('=== DOT GRID DEBUG ===');
-                console.log('Canvas dimensions:', canvasWidth, 'x', canvasHeight);
-                console.log('Grid size:', gridSize);
-                console.log('Grid calculation:', canvasWidth / gridSize, 'x', canvasHeight / gridSize);
-                console.log('Max dots (i,j):', maxI, 'x', maxJ);
-                console.log('Total dots to draw:', maxI * maxJ);
-                console.log('Last dot position will be:', (maxI-1) * gridSize, 'x', (maxJ-1) * gridSize);
-                
-                let dotCount = 0;
-                
-                // Start from 0 and go beyond the original bounds to ensure full coverage
                 for (var i = 0; i < maxI; i++) {
                     for (var j = 0; j < maxJ; j++) {
                         let x = i * gridSize;
                         let y = j * gridSize;
                         let dist = this.pythag(x, y, this.mouseX, this.mouseY);
                         
-                        // Calculate repulsion effect - using your original formula
                         let repulsionX = 0;
                         let repulsionY = 0;
-                        if (dist > 0 && dist < 100) { // Only apply repulsion within 100px
+                        if (dist > 0 && dist < 100) {
                             repulsionX = (x - this.mouseX) / dist * gridSize * 0.3;
                             repulsionY = (y - this.mouseY) / dist * gridSize * 0.3;
                         }
                         
                         this.canvas.beginPath();
-                        this.canvas.arc(
-                            x + repulsionX,
-                            y + repulsionY,
-                            size,
-                            0,
-                            Math.PI * 2
-                        );
-                        this.canvas.fillStyle = "rgba(242, 135, 5, 0.5)"; // 50% opacity
+                        this.canvas.arc(x + repulsionX, y + repulsionY, size, 0, Math.PI * 2);
+                        this.canvas.fillStyle = "rgba(242, 135, 5, 0.5)";
                         this.canvas.fill();
-                        
-                        dotCount++;
-                        
-                        // Log first few and last few dots
-                        if (dotCount <= 5 || dotCount > maxI * maxJ - 5) {
-                            console.log(`Dot ${dotCount}: (${i},${j}) at (${x},${y})`);
-                        }
                     }
                 }
-                
-                console.log('Actually drew', dotCount, 'dots');
-                console.log('=== END DEBUG ===');
             }
 
-            // Grabs mouse position, checks if the mouse is off the screen (NaN) and calculates the distance from the mouse pointer and each dot using the pythagorean theorem.
             pythag(ellipseX, ellipseY, mouseX, mouseY) {
                 let x = mouseX;
                 let y = mouseY;
@@ -444,38 +307,6 @@
 
         const grid = new DotGrid("dotGrid");
         grid.init();
-        
-        // Full Screen Functionality
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
-        
-        fullscreenBtn.addEventListener('click', async () => {
-            try {
-                if (!document.fullscreenElement) {
-                    // Enter full screen
-                    await document.documentElement.requestFullscreen();
-                    fullscreenBtn.textContent = 'Exit Full Screen';
-                } else {
-                    // Exit full screen
-                    await document.exitFullscreen();
-                    fullscreenBtn.textContent = 'Enter Full Screen';
-                }
-            } catch (err) {
-                console.error('Full screen error:', err);
-            }
-        });
-        
-        // Listen for full screen changes
-        document.addEventListener('fullscreenchange', () => {
-            if (document.fullscreenElement) {
-                fullscreenBtn.textContent = 'Exit Full Screen';
-                console.log('Entered full screen mode');
-            } else {
-                fullscreenBtn.textContent = 'Enter Full Screen';
-                console.log('Exited full screen mode');
-            }
-            // Resize canvas when entering/exiting full screen
-            grid.resize();
-        });
     </script>
 </body>
 </html>
