@@ -289,8 +289,8 @@
             drawDots() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 
-                const cubeSize = 3;
-                const spacing = 28; // Reduced from 40 to 28 for more density
+                const cubeSize = 12; // 4 times bigger (3 * 4 = 12)
+                const spacing = 50; // Adjusted spacing for larger cubes (was 28, now 50 for good spacing)
                 const color = 'rgba(242, 135, 5, 0.6)'; // Orange with 60% opacity
                 
                 // Calculate how many cubes we need to cover the entire screen
@@ -308,12 +308,12 @@
                         
                         if (this.isMouseOver) {
                             const distance = this.getDistance(baseX, baseY, this.mouseX, this.mouseY);
-                            const maxDistance = 80; // Interaction radius
+                            const maxDistance = 120; // Increased interaction radius for larger cubes
                             
                             if (distance < maxDistance && distance > 0) {
                                 // Calculate repulsion force
                                 const force = (maxDistance - distance) / maxDistance;
-                                const repulsionStrength = 15; // How strong the repulsion is
+                                const repulsionStrength = 25; // Increased repulsion strength for larger cubes
                                 
                                 // Calculate direction away from cursor
                                 const angle = Math.atan2(baseY - this.mouseY, baseX - this.mouseX);
@@ -341,10 +341,13 @@
                 // Move to the cube center
                 this.ctx.translate(x, y);
                 
-                // Enable anti-aliasing for smooth edges
-                this.ctx.lineWidth = 0.5;
+                // Enhanced anti-aliasing for larger cubes
+                this.ctx.lineWidth = 1;
                 this.ctx.lineCap = 'round';
                 this.ctx.lineJoin = 'round';
+                
+                // Enable sub-pixel rendering for smoother edges
+                this.ctx.textRenderingOptimization = 'optimizeQuality';
                 
                 // Define cube faces with improved 3D perspective
                 const faces = [
