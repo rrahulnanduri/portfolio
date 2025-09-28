@@ -272,15 +272,13 @@
             drawDots() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 
-                const dotSize = 3;
-                const spacing = 40;
+                const cubeSize = 3;
+                const spacing = 28; // Reduced from 40 to 28 for more density
                 const color = 'rgba(242, 135, 5, 0.6)'; // Orange with 60% opacity
                 
-                // Calculate how many dots we need to cover the entire screen
+                // Calculate how many cubes we need to cover the entire screen
                 const cols = Math.ceil(this.canvas.width / spacing) + 1;
                 const rows = Math.ceil(this.canvas.height / spacing) + 1;
-                
-                this.ctx.fillStyle = color;
                 
                 for (let i = 0; i < cols; i++) {
                     for (let j = 0; j < rows; j++) {
@@ -310,11 +308,89 @@
                             }
                         }
                         
-                        this.ctx.beginPath();
-                        this.ctx.arc(finalX, finalY, dotSize, 0, Math.PI * 2);
-                        this.ctx.fill();
+                        // Draw 3D cube instead of circle
+                        this.draw3DCube(finalX, finalY, cubeSize, color);
                     }
                 }
+            }
+
+            draw3DCube(x, y, size, color) {
+                const halfSize = size / 2;
+                
+                // Save the current context state
+                this.ctx.save();
+                
+                // Move to the cube center
+                this.ctx.translate(x, y);
+                
+                // Define cube faces with 3D perspective
+                const faces = [
+                    // Front face (facing viewer)
+                    {
+                        points: [
+                            [-halfSize, -halfSize],
+                            [halfSize, -halfSize],
+                            [halfSize, halfSize],
+                            [-halfSize, halfSize]
+                        ],
+                        color: color
+                    },
+                    // Top face
+                    {
+                        points: [
+                            [-halfSize, -halfSize],
+                            [halfSize, -halfSize],
+                            [halfSize - 2, -halfSize - 2],
+                            [-halfSize - 2, -halfSize - 2]
+                        ],
+                        color: this.adjustColor(color, 0.2) // Lighter
+                    },
+                    // Right face
+                    {
+                        points: [
+                            [halfSize, -halfSize],
+                            [halfSize, halfSize],
+                            [halfSize - 2, halfSize - 2],
+                            [halfSize - 2, -halfSize - 2]
+                        ],
+                        color: this.adjustColor(color, -0.2) // Darker
+                    }
+                ];
+                
+                // Draw each face
+                faces.forEach(face => {
+                    this.ctx.fillStyle = face.color;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(face.points[0][0], face.points[0][1]);
+                    
+                    for (let i = 1; i < face.points.length; i++) {
+                        this.ctx.lineTo(face.points[i][0], face.points[i][1]);
+                    }
+                    
+                    this.ctx.closePath();
+                    this.ctx.fill();
+                });
+                
+                // Restore the context state
+                this.ctx.restore();
+            }
+
+            adjustColor(color, factor) {
+                // Extract RGB values from rgba string
+                const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+),?\s*([\d.]+)?\)/);
+                if (!match) return color;
+                
+                const r = parseInt(match[1]);
+                const g = parseInt(match[2]);
+                const b = parseInt(match[3]);
+                const a = match[4] ? parseFloat(match[4]) : 1;
+                
+                // Adjust brightness
+                const newR = Math.max(0, Math.min(255, r + (factor * 255)));
+                const newG = Math.max(0, Math.min(255, g + (factor * 255)));
+                const newB = Math.max(0, Math.min(255, b + (factor * 255)));
+                
+                return `rgba(${Math.round(newR)}, ${Math.round(newG)}, ${Math.round(newB)}, ${a})`;
             }
 
             getDistance(x1, y1, x2, y2) {
