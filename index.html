@@ -298,7 +298,7 @@
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 
                 const circleSize = 4; // 1/3 the size of spheres (12 / 3 = 4)
-                const spacing = 43; // 50% more dense (65 / 1.5 = 43.33, rounded to 43)
+                const spacing = 22; // Half the previous spacing (43 / 2 = 21.5, rounded to 22)
                 const color = 'rgba(242, 135, 5, 0.6)'; // Orange with 60% opacity
                 
                 // Calculate how many circles we need to cover the entire screen
@@ -331,13 +331,13 @@
                         
                         if (this.isMouseOver) {
                             const distance = this.getDistance(baseX, baseY, this.mouseX, this.mouseY);
-                            const maxDistance = 80; // Adjusted interaction radius for smaller circles
+                            const maxDistance = 60; // Adjusted interaction radius for denser circles
                             
                             if (distance < maxDistance && distance > 0) {
                                 // Calculate repulsion force with easing
                                 const normalizedDistance = distance / maxDistance;
                                 const easeOut = 1 - Math.pow(normalizedDistance, 2); // Ease out curve
-                                const repulsionStrength = 20; // Adjusted for smaller circles
+                                const repulsionStrength = 15; // Adjusted for denser circles
                                 
                                 // Calculate direction away from cursor
                                 const angle = Math.atan2(baseY - this.mouseY, baseX - this.mouseX);
