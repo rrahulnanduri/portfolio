@@ -217,6 +217,9 @@
                 this.canvas = document.getElementById('dotGrid');
                 this.ctx = this.canvas.getContext('2d');
                 
+                // High-DPI support
+                this.dpr = window.devicePixelRatio || 1;
+                
                 // Cursor tracking
                 this.mouseX = 0;
                 this.mouseY = 0;
@@ -235,11 +238,25 @@
             }
 
             setupCanvas() {
-                // Set canvas to cover entire viewport
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
-                this.canvas.style.width = window.innerWidth + 'px';
-                this.canvas.style.height = window.innerHeight + 'px';
+                // Get viewport dimensions
+                const rect = this.canvas.getBoundingClientRect();
+                const displayWidth = window.innerWidth;
+                const displayHeight = window.innerHeight;
+                
+                // Set the internal size to the display size * device pixel ratio
+                this.canvas.width = displayWidth * this.dpr;
+                this.canvas.height = displayHeight * this.dpr;
+                
+                // Set the display size (CSS pixels)
+                this.canvas.style.width = displayWidth + 'px';
+                this.canvas.style.height = displayHeight + 'px';
+                
+                // Scale the drawing context so everything draws at the correct size
+                this.ctx.scale(this.dpr, this.dpr);
+                
+                // Enable anti-aliasing for smoother rendering
+                this.ctx.imageSmoothingEnabled = true;
+                this.ctx.imageSmoothingQuality = 'high';
             }
 
             setupEventListeners() {
@@ -316,6 +333,7 @@
 
             draw3DCube(x, y, size, color) {
                 const halfSize = size / 2;
+                const depth = size * 0.4; // More pronounced 3D effect
                 
                 // Save the current context state
                 this.ctx.save();
@@ -323,9 +341,44 @@
                 // Move to the cube center
                 this.ctx.translate(x, y);
                 
-                // Define cube faces with 3D perspective
+                // Enable anti-aliasing for smooth edges
+                this.ctx.lineWidth = 0.5;
+                this.ctx.lineCap = 'round';
+                this.ctx.lineJoin = 'round';
+                
+                // Define cube faces with improved 3D perspective
                 const faces = [
-                    // Front face (facing viewer)
+                    // Back face (drawn first, behind others)
+                    {
+                        points: [
+                            [-halfSize + depth, -halfSize + depth],
+                            [halfSize + depth, -halfSize + depth],
+                            [halfSize + depth, halfSize + depth],
+                            [-halfSize + depth, halfSize + depth]
+                        ],
+                        color: this.adjustColor(color, -0.3) // Darkest
+                    },
+                    // Right face
+                    {
+                        points: [
+                            [halfSize, -halfSize],
+                            [halfSize + depth, -halfSize + depth],
+                            [halfSize + depth, halfSize + depth],
+                            [halfSize, halfSize]
+                        ],
+                        color: this.adjustColor(color, -0.15) // Darker
+                    },
+                    // Top face
+                    {
+                        points: [
+                            [-halfSize, -halfSize],
+                            [halfSize, -halfSize],
+                            [halfSize + depth, -halfSize + depth],
+                            [-halfSize + depth, -halfSize + depth]
+                        ],
+                        color: this.adjustColor(color, 0.25) // Lighter
+                    },
+                    // Front face (facing viewer, drawn last)
                     {
                         points: [
                             [-halfSize, -halfSize],
@@ -334,32 +387,14 @@
                             [-halfSize, halfSize]
                         ],
                         color: color
-                    },
-                    // Top face
-                    {
-                        points: [
-                            [-halfSize, -halfSize],
-                            [halfSize, -halfSize],
-                            [halfSize - 2, -halfSize - 2],
-                            [-halfSize - 2, -halfSize - 2]
-                        ],
-                        color: this.adjustColor(color, 0.2) // Lighter
-                    },
-                    // Right face
-                    {
-                        points: [
-                            [halfSize, -halfSize],
-                            [halfSize, halfSize],
-                            [halfSize - 2, halfSize - 2],
-                            [halfSize - 2, -halfSize - 2]
-                        ],
-                        color: this.adjustColor(color, -0.2) // Darker
                     }
                 ];
                 
-                // Draw each face
-                faces.forEach(face => {
+                // Draw each face with improved rendering
+                faces.forEach((face, index) => {
                     this.ctx.fillStyle = face.color;
+                    this.ctx.strokeStyle = this.adjustColor(face.color, -0.1);
+                    
                     this.ctx.beginPath();
                     this.ctx.moveTo(face.points[0][0], face.points[0][1]);
                     
@@ -369,6 +404,11 @@
                     
                     this.ctx.closePath();
                     this.ctx.fill();
+                    
+                    // Add subtle stroke for definition (except back face)
+                    if (index < faces.length - 1) {
+                        this.ctx.stroke();
+                    }
                 });
                 
                 // Restore the context state
