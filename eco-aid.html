@@ -3,12 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco A.I.D - Rahul Nanduri Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/sector-pages.css">
+    <title>Eco Aid - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Color Scheme */
+        :root {
+            --bg-color: #F2F0E4;
+            --text-color: #1a1a1a;
+            --accent-color: #F24405;
+            --card-bg: #ffffff;
+            --card-border: #e5e5e5;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.12);
+            --warning-icon: #FFA500;
+            --success-icon: #22c55e;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'VT323', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Typography Hierarchy */
+        h1 {
+            font-family: 'VT323', monospace;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Container and Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Back Navigation */
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 25px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 4px 12px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--shadow-medium);
+        }
+
+        .back-arrow {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Card Base Styles */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px var(--shadow-light), 
+                        0 2px 4px var(--shadow-medium);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--shadow-medium), 
+                        0 4px 8px var(--shadow-light);
+        }
+
+        /* Project Overview Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .overview-card {
+            text-align: center;
+        }
+
+        .overview-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .overview-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Technology Tags */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 400;
+        }
+
+        /* Challenges Section */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .challenge-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .challenge-card .warning-icon {
+            color: var(--warning-icon);
+        }
+
+        .challenge-card .solution-icon {
+            color: var(--success-icon);
+        }
+
+        /* Links and Buttons */
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #d63a04;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 13px;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Back Navigation -->
@@ -19,112 +288,98 @@
         </a>
     </nav>
 
-    <!-- Sector Header -->
-    <header class="sector-header">
-        <div class="sector-hero">
-            <div class="sector-mockup-large" id="sectorMockup">
-                <!-- Mockup will be dynamically inserted here -->
-            </div>
-            <div class="sector-info">
-                <div class="sector-meta">
-                    <span class="sector-category" id="sectorCategory">Category</span>
-                    <span class="sector-year" id="sectorYear">2024</span>
-                    <span class="sector-status" id="sectorStatus">Status</span>
-                </div>
-                <h1 class="sector-title" id="sectorTitle">Sector Title</h1>
-                <h2 class="sector-subtitle" id="sectorSubtitle">Sector Subtitle</h2>
-                <p class="sector-description" id="sectorDescription">Sector description goes here.</p>
-                <div class="sector-tags" id="sectorTags">
-                    <!-- Tags will be dynamically inserted here -->
-                </div>
-            </div>
-        </div>
-    </header>
+    <div class="container">
+        <!-- Project Header -->
+        <header>
+            <h1>Eco Aid</h1>
+            <p>An environmental awareness platform that educates users about sustainability practices and connects them with local eco-friendly initiatives.</p>
+        </header>
 
-    <!-- Sector Content -->
-    <main class="sector-main">
-        <!-- Project Overview -->
-        <section class="sector-section">
-            <h3 class="section-title">Project Overview</h3>
+        <!-- Project Overview Section -->
+        <section>
+            <h2>Project Overview</h2>
             <div class="overview-grid">
-                <div class="overview-item">
-                    <h4>Duration</h4>
-                    <p id="projectDuration">Duration</p>
+                <div class="card overview-card">
+                    <span class="icon">⏱️</span>
+                    <h3>Duration</h3>
+                    <p><strong>5 months</strong><br>January - May 2024</p>
                 </div>
-                <div class="overview-item">
-                    <h4>Team</h4>
-                    <p id="projectTeam">Team</p>
+
+                <div class="card overview-card">
+                    <span class="icon">👥</span>
+                    <h3>Team</h3>
+                    <p><strong>4 members</strong><br>2 Frontend, 1 Backend, 1 Designer</p>
                 </div>
-                <div class="overview-item">
-                    <h4>Technologies</h4>
-                    <div class="tech-list" id="projectTechnologies">
-                        <!-- Technologies will be dynamically inserted here -->
+
+                <div class="card overview-card">
+                    <span class="icon">🛠️</span>
+                    <h3>Technologies</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Mapbox</span>
                     </div>
                 </div>
-                <div class="overview-item">
-                    <h4>Links</h4>
-                    <div class="project-links" id="projectLinks">
-                        <!-- Links will be dynamically inserted here -->
+
+                <div class="card overview-card">
+                    <span class="icon">🔗</span>
+                    <h3>Links</h3>
+                    <div class="project-links">
+                        <a href="#" class="btn">Live Demo</a>
+                        <a href="#" class="btn btn-secondary">GitHub</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Challenges & Solutions -->
-        <section class="sector-section">
-            <h3 class="section-title">Challenges & Solutions</h3>
-            <div class="challenges-solutions">
-                <div class="challenges">
-                    <h4>Challenges</h4>
-                    <ul id="projectChallenges">
-                        <!-- Challenges will be dynamically inserted here -->
-                    </ul>
+        <!-- Challenges & Solutions Section -->
+        <section>
+            <h2>Challenges & Solutions</h2>
+            <div class="challenges-grid">
+                <div class="card challenge-card">
+                    <h3><span class="warning-icon">⚠️</span> Challenges</h3>
+                    <p>Complex mapping integration</p>
+                    <p>Data visualization requirements</p>
+                    <p>User engagement strategies</p>
                 </div>
-                <div class="solutions">
-                    <h4>Solutions</h4>
-                    <ul id="projectSolutions">
-                        <!-- Solutions will be dynamically inserted here -->
-                    </ul>
+
+                <div class="card challenge-card">
+                    <h3><span class="solution-icon">✅</span> Solutions</h3>
+                    <p>Implemented Mapbox API for location services</p>
+                    <p>Created interactive data charts and graphs</p>
+                    <p>Built gamification features and progress tracking</p>
                 </div>
             </div>
         </section>
 
-        <!-- Results -->
-        <section class="sector-section">
-            <h3 class="section-title">Results</h3>
-            <ul class="results-list" id="projectResults">
-                <!-- Results will be dynamically inserted here -->
-            </ul>
-        </section>
-
-        <!-- Gallery -->
-        <section class="sector-section">
-            <h3 class="section-title">Project Gallery</h3>
-            <div class="gallery-grid" id="projectGallery">
-                <!-- Gallery images will be dynamically inserted here -->
+        <!-- Key Features Section -->
+        <section>
+            <h2>Key Features</h2>
+            <div class="card">
+                <h3>Interactive Maps</h3>
+                <p>Location-based features that help users find nearby eco-friendly businesses, recycling centers, and environmental events.</p>
+                
+                <h3>Educational Content</h3>
+                <p>Comprehensive guides and articles about sustainable living practices, environmental impact, and actionable steps for users.</p>
+                
+                <h3>Community Features</h3>
+                <p>User profiles, achievement systems, and community challenges that encourage sustainable behavior and environmental awareness.</p>
             </div>
         </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="sector-footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Rahul Nanduri. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="index.html">Portfolio</a>
-                <a href="#contact">Contact</a>
+        <!-- Results Section -->
+        <section>
+            <h2>Results</h2>
+            <div class="card">
+                <h3>User Impact</h3>
+                <p>Over 1,000 active users with 85% reporting increased awareness of environmental issues and 70% adopting new sustainable practices.</p>
+                
+                <h3>Community Growth</h3>
+                <p>Successfully connected 200+ local environmental organizations with users, creating a thriving community of eco-conscious individuals.</p>
             </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="js/sector-properties.js"></script>
-    <script src="js/sector-page.js"></script>
-    <script>
-        // Initialize sector page with Eco A.I.D data
-        document.addEventListener('DOMContentLoaded', function() {
-            window.SectorPage.init('eco-aid');
-        });
-    </script>
+        </section>
+    </div>
 </body>
 </html>
