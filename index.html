@@ -211,18 +211,27 @@
     <script src="js/sector-properties.js"></script>
     
     <script>
-        // Simple Dot Grid - Step 1: Basic dots covering entire screen
+        // Enhanced Dot Grid - Step 2: Adding cursor interaction
         class SimpleDotGrid {
             constructor() {
                 this.canvas = document.getElementById('dotGrid');
                 this.ctx = this.canvas.getContext('2d');
+                
+                // Cursor tracking
+                this.mouseX = 0;
+                this.mouseY = 0;
+                this.isMouseOver = false;
+                
+                // Animation
+                this.animationId = null;
+                
                 this.init();
             }
 
             init() {
                 this.setupCanvas();
-                this.drawDots();
-                window.addEventListener('resize', () => this.setupCanvas());
+                this.setupEventListeners();
+                this.startAnimation();
             }
 
             setupCanvas() {
@@ -231,6 +240,33 @@
                 this.canvas.height = window.innerHeight;
                 this.canvas.style.width = window.innerWidth + 'px';
                 this.canvas.style.height = window.innerHeight + 'px';
+            }
+
+            setupEventListeners() {
+                // Mouse tracking
+                document.addEventListener('mousemove', (e) => {
+                    this.mouseX = e.clientX;
+                    this.mouseY = e.clientY;
+                    this.isMouseOver = true;
+                });
+
+                // Mouse leave detection
+                document.addEventListener('mouseleave', () => {
+                    this.isMouseOver = false;
+                });
+
+                // Window resize
+                window.addEventListener('resize', () => {
+                    this.setupCanvas();
+                });
+            }
+
+            startAnimation() {
+                const animate = () => {
+                    this.drawDots();
+                    this.animationId = requestAnimationFrame(animate);
+                };
+                animate();
             }
 
             drawDots() {
@@ -248,14 +284,43 @@
                 
                 for (let i = 0; i < cols; i++) {
                     for (let j = 0; j < rows; j++) {
-                        const x = i * spacing;
-                        const y = j * spacing;
+                        const baseX = i * spacing;
+                        const baseY = j * spacing;
+                        
+                        // Calculate cursor interaction
+                        let finalX = baseX;
+                        let finalY = baseY;
+                        
+                        if (this.isMouseOver) {
+                            const distance = this.getDistance(baseX, baseY, this.mouseX, this.mouseY);
+                            const maxDistance = 80; // Interaction radius
+                            
+                            if (distance < maxDistance && distance > 0) {
+                                // Calculate repulsion force
+                                const force = (maxDistance - distance) / maxDistance;
+                                const repulsionStrength = 15; // How strong the repulsion is
+                                
+                                // Calculate direction away from cursor
+                                const angle = Math.atan2(baseY - this.mouseY, baseX - this.mouseX);
+                                const repulsionX = Math.cos(angle) * force * repulsionStrength;
+                                const repulsionY = Math.sin(angle) * force * repulsionStrength;
+                                
+                                finalX = baseX + repulsionX;
+                                finalY = baseY + repulsionY;
+                            }
+                        }
                         
                         this.ctx.beginPath();
-                        this.ctx.arc(x, y, dotSize, 0, Math.PI * 2);
+                        this.ctx.arc(finalX, finalY, dotSize, 0, Math.PI * 2);
                         this.ctx.fill();
                     }
                 }
+            }
+
+            getDistance(x1, y1, x2, y2) {
+                const dx = x2 - x1;
+                const dy = y2 - y1;
+                return Math.sqrt(dx * dx + dy * dy);
             }
         }
 
