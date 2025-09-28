@@ -211,105 +211,58 @@
     <script src="js/sector-properties.js"></script>
     
     <script>
-        class DotGrid {
-            constructor(container = "dotGrid") {
-                this.canvasElement = document.getElementById(container);
-                this.dpr = window.devicePixelRatio || 1;
-                this.mouseX = 0;
-                this.mouseY = 0;
-                this.canvas = this.canvasElement.getContext("2d");
-                this.canvas.scale(this.dpr, this.dpr);
-                this.resize();
-            }
-
-            onMouseUpdate(e) {
-                this.mouseX = e.pageX - this.drawable.left;
-                this.mouseY = e.pageY - this.drawable.top;
-                window.requestAnimationFrame(this.draw.bind(this));
+        // Simple Dot Grid - Step 1: Basic dots covering entire screen
+        class SimpleDotGrid {
+            constructor() {
+                this.canvas = document.getElementById('dotGrid');
+                this.ctx = this.canvas.getContext('2d');
+                this.init();
             }
 
             init() {
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', () => this.init());
-                    return;
-                }
-                
-                this.resize();
-                this.draw();
-                
-                document.body.addEventListener("mousemove", this.onMouseUpdate.bind(this), false);
-                window.addEventListener('resize', this.resize.bind(this));
-            }
-
-            resize() {
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-                
-                this.canvasElement.style.width = viewportWidth + 'px';
-                this.canvasElement.style.height = viewportHeight + 'px';
-                
-                this.canvasWidth = viewportWidth * this.dpr;
-                this.canvasHeight = viewportHeight * this.dpr;
-                
-                this.canvasElement.width = this.canvasWidth;
-                this.canvasElement.height = this.canvasHeight;
-                
-                this.drawable = this.canvasElement.getBoundingClientRect();
-            }
-
-            draw() {
-                this.canvas.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+                this.setupCanvas();
                 this.drawDots();
+                window.addEventListener('resize', () => this.setupCanvas());
+            }
+
+            setupCanvas() {
+                // Set canvas to cover entire viewport
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                this.canvas.style.width = window.innerWidth + 'px';
+                this.canvas.style.height = window.innerHeight + 'px';
             }
 
             drawDots() {
-                let size = 2.7;
-                let gridSize = 30;
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 
-                let canvasWidth = this.canvasWidth / this.dpr;
-                let canvasHeight = this.canvasHeight / this.dpr;
+                const dotSize = 3;
+                const spacing = 40;
+                const color = 'rgba(242, 135, 5, 0.6)'; // Orange with 60% opacity
                 
-                let maxI = Math.ceil(canvasWidth / gridSize) + 1;
-                let maxJ = Math.ceil(canvasHeight / gridSize) + 1;
+                // Calculate how many dots we need to cover the entire screen
+                const cols = Math.ceil(this.canvas.width / spacing) + 1;
+                const rows = Math.ceil(this.canvas.height / spacing) + 1;
                 
-                for (var i = 0; i < maxI; i++) {
-                    for (var j = 0; j < maxJ; j++) {
-                        let x = i * gridSize;
-                        let y = j * gridSize;
-                        let dist = this.pythag(x, y, this.mouseX, this.mouseY);
+                this.ctx.fillStyle = color;
+                
+                for (let i = 0; i < cols; i++) {
+                    for (let j = 0; j < rows; j++) {
+                        const x = i * spacing;
+                        const y = j * spacing;
                         
-                        let repulsionX = 0;
-                        let repulsionY = 0;
-                        if (dist > 0 && dist < 100) {
-                            repulsionX = (x - this.mouseX) / dist * gridSize * 0.3;
-                            repulsionY = (y - this.mouseY) / dist * gridSize * 0.3;
-                        }
-                        
-                        this.canvas.beginPath();
-                        this.canvas.arc(x + repulsionX, y + repulsionY, size, 0, Math.PI * 2);
-                        this.canvas.fillStyle = "rgba(242, 135, 5, 0.5)";
-                        this.canvas.fill();
+                        this.ctx.beginPath();
+                        this.ctx.arc(x, y, dotSize, 0, Math.PI * 2);
+                        this.ctx.fill();
                     }
-                }
-            }
-
-            pythag(ellipseX, ellipseY, mouseX, mouseY) {
-                let x = mouseX;
-                let y = mouseY;
-
-                if (isNaN(x)) {
-                    return 1;
-                } else {
-                    let leg1 = Math.abs(x - ellipseX);
-                    let leg2 = Math.abs(y - ellipseY);
-                    let pyth = Math.pow(leg1, 2) + Math.pow(leg2, 2);
-                    return Math.sqrt(pyth);
                 }
             }
         }
 
-        const grid = new DotGrid("dotGrid");
-        grid.init();
+        // Initialize the simple dot grid
+        document.addEventListener('DOMContentLoaded', function() {
+            new SimpleDotGrid();
+        });
 
         // Initialize sector rendering
         document.addEventListener('DOMContentLoaded', function() {
