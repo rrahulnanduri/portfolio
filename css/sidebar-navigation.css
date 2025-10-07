@@ -236,32 +236,28 @@ body {
     z-index: 10000;
     width: 40px;
     height: 40px;
-    background: rgba(242, 68, 5, 0.15);
-    border: 1px solid rgba(242, 68, 5, 0.25);
+    background: var(--accent-color);
+    border: 1px solid var(--accent-color);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s var(--transition-timing);
-    box-shadow: 0 2px 8px rgba(242, 68, 5, 0.1);
+    box-shadow: 0 2px 8px rgba(242, 68, 5, 0.3);
     outline: none;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
 .peek-button:hover {
     transform: scale(1.2);
     background: var(--accent-color);
     border-color: var(--accent-color);
-    box-shadow: 0 6px 20px rgba(242, 68, 5, 0.4);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 6px 20px rgba(242, 68, 5, 0.5);
 }
 
 .peek-button:focus {
-    box-shadow: 0 0 0 3px rgba(242, 68, 5, 0.15);
-    outline: 1px solid rgba(242, 68, 5, 0.25);
+    box-shadow: 0 0 0 3px rgba(242, 68, 5, 0.3);
+    outline: 1px solid var(--accent-color);
 }
 
 
