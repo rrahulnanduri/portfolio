@@ -260,7 +260,8 @@ body {
 }
 
 .peek-button:focus {
-    box-shadow: 0 0 0 3px rgba(242, 68, 5, 0.25);
+    box-shadow: 0 0 0 3px rgba(242, 68, 5, 0.1);
+    outline: 1px solid rgba(242, 68, 5, 0.2);
 }
 
 /* Proximity-based color changes */
