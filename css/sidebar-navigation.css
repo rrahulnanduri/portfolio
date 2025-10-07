@@ -10,6 +10,15 @@
     --accent-color: #6bc1e0;
     --primary-color: #6bc1e0;
     --secondary-color: #366170;
+    --background-color: #F2F0E4;
+    --card-background: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --text-light: #ffffff;
+    --border-color: #e5e5e5;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
     --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
     --animation-duration: 350ms;
     --detection-width: 60px;

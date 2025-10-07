@@ -2,6 +2,24 @@
    SECTOR PAGES STYLES
    ======================================== */
 
+/* Color Scheme Variables */
+:root {
+    --primary-color: #6bc1e0;
+    --secondary-color: #366170;
+    --accent-color: #6bcde0;
+    --background-color: #F2F0E4;
+    --card-background: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --text-light: #ffffff;
+    --border-color: #e5e5e5;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
+    --warning-icon: #FFA500;
+    --success-icon: #22c55e;
+}
+
 /* Back Navigation */
 .back-nav {
     position: fixed;
@@ -98,13 +116,13 @@
 }
 
 .sector-category {
-    background: #6bc1e0;
+    background: var(--primary-color);
     color: white;
 }
 
 .sector-year {
     background: rgba(242, 68, 5, 0.1);
-    color: #6bc1e0;
+    color: var(--primary-color);
 }
 
 .sector-status {
@@ -115,7 +133,7 @@
 .sector-title {
     font-size: 3rem;
     font-weight: 700;
-    color: #6bc1e0;
+    color: var(--primary-color);
     margin-bottom: 10px;
     line-height: 1.2;
 }
@@ -144,7 +162,7 @@
 .sector-tag {
     padding: 8px 16px;
     background: rgba(242, 68, 5, 0.1);
-    color: #6bc1e0;
+    color: var(--primary-color);
     border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -356,7 +374,7 @@
     left: 0;
     width: 60px;
     height: 4px;
-    background: #6bc1e0;
+    background: var(--primary-color);
     border-radius: 2px;
 }
 
@@ -414,7 +432,7 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: #6bc1e0;
+    background: var(--primary-color);
     color: white;
     text-decoration: none;
     border-radius: 25px;
@@ -566,7 +584,7 @@
 }
 
 .footer-links a:hover {
-    color: #6bc1e0;
+    color: var(--primary-color);
 }
 
 /* Responsive Design */

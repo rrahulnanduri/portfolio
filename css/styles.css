@@ -1,3 +1,19 @@
+/* Color Scheme Variables */
+:root {
+    --primary-color: #6bc1e0;
+    --secondary-color: #366170;
+    --accent-color: #6bcde0;
+    --background-color: #F2F0E4;
+    --card-background: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --text-light: #ffffff;
+    --border-color: #e5e5e5;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -7,8 +23,8 @@
 
 body {
     font-family: 'VT323', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #F2F0E4;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
     font-size: 18px;
@@ -46,30 +62,30 @@ body {
 }
 
 .profile-card {
-    background: black;
+    background: var(--secondary-color);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px var(--shadow-medium), 0 2px 4px var(--shadow-light);
 }
 
 .profile-name {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #6bc1e0;
+    color: var(--primary-color);
     margin-bottom: 0.25rem;
 }
 
 .profile-pronunciation {
     font-size: 0.9rem;
-    color: white;
+    color: var(--text-light);
     margin-bottom: 1rem;
     font-style: italic;
 }
 
 .profile-description {
     font-size: 0.95rem;
-    color: white;
+    color: var(--text-light);
     line-height: 1.5;
 }
 
@@ -151,7 +167,7 @@ body {
     left: 0;
     right: 0;
     height: 50%;
-    background: #6bc1e0;
+    background: var(--primary-color);
     opacity: 1;
     border-radius: 0 0 12px 12px;
     pointer-events: none;
@@ -209,7 +225,7 @@ body {
 /* Dark Theme */
 .dark-theme {
     background: #1a1a1a;
-    color: white;
+    color: var(--text-light);
 }
 
 .dark-theme .browser-header {
@@ -278,7 +294,7 @@ body {
 
 .studio-button {
     background: #333;
-    color: white;
+    color: var(--text-light);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 6px;
@@ -300,7 +316,7 @@ body {
     padding: 1rem;
     margin-bottom: 0.5rem;
     border-radius: 6px;
-    color: white;
+    color: var(--text-light);
 }
 
 .framework-section.purple {
@@ -349,7 +365,7 @@ body {
 .project-title {
     font-size: 1.2rem;
     font-weight: 600;
-    color: white;
+    color: var(--text-light);
     margin-bottom: 0.75rem;
     position: relative;
     z-index: 2;
@@ -357,7 +373,7 @@ body {
 
 .project-description {
     font-size: 0.9rem;
-    color: white;
+    color: var(--text-light);
     line-height: 1.5;
     margin-bottom: 1rem;
     position: relative;
@@ -374,7 +390,7 @@ body {
 
 .tag {
     background: rgba(255, 255, 255, 0.2);
-    color: white;
+    color: var(--text-light);
     padding: 0.3rem 0.9rem; /* Increased by 20%: 0.25*1.2=0.3, 0.75*1.2=0.9 */
     border-radius: 20px;
     font-size: 0.8rem;
@@ -642,7 +658,7 @@ body {
 }
 
 .wireframe-line {
-    stroke: #000;
+    stroke: var(--text-primary);
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -692,7 +708,7 @@ body {
 }
 
 .wireframe-node {
-    fill: #000;
+    fill: var(--text-primary);
     transition: all 0.3s ease;
 }
 
@@ -837,7 +853,7 @@ body {
 
 .tag {
     background: #F28705;
-    color: white;
+    color: var(--text-light);
     padding: 0.6rem 1.2rem; /* Increased by 20%: 0.5*1.2=0.6, 1*1.2=1.2 */
     border-radius: 20px;
     font-size: 0.9rem;
@@ -849,7 +865,7 @@ body {
 
 /* Visual Section */
 .sector-visual {
-    background: linear-gradient(135deg, #6bc1e0 0%, #6bcde0 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
     margin: 2rem;
     padding: 3rem 2rem;
     border-radius: 12px;
@@ -948,7 +964,7 @@ body {
     background: #f8f9fa;
     padding: 1.5rem;
     border-radius: 8px;
-    border-left: 4px solid #6bc1e0;
+    border-left: 4px solid var(--primary-color);
 }
 
 .feature-card h3 {
@@ -989,7 +1005,7 @@ body {
 .framework-card {
     padding: 1.5rem;
     border-radius: 8px;
-    color: white;
+    color: var(--text-light);
     text-align: center;
 }
 
