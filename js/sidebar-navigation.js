@@ -33,12 +33,7 @@ class ProximitySidebar {
             hideTimer: null,
             lastMousePosition: { x: 0, y: 0 },
             touchStartX: 0,
-            isTouch: false,
-            currentZone: null,
-            lastDistance: Infinity,
-            elementCenter: { x: 0, y: 0 },
-            elementRect: null,
-            frameCount: 0
+            isTouch: false
         };
 
         // Performance optimization
@@ -57,7 +52,6 @@ class ProximitySidebar {
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
         this.handlePeekButtonClick = this.handlePeekButtonClick.bind(this);
         this.handlePeekButtonHover = this.handlePeekButtonHover.bind(this);
-        this.handlePeekButtonMouseMove = this.handlePeekButtonMouseMove.bind(this);
 
         // Initialize
         this.init();
@@ -70,7 +64,6 @@ class ProximitySidebar {
         this.setupEventListeners();
         this.setupAccessibility();
         this.updateDetectionZone();
-        this.updateElementRect(); // Initialize element rect for proximity calculations
         
         // Feature detection
         this.supportsTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -109,7 +102,6 @@ class ProximitySidebar {
         if (this.peekButton) {
             this.peekButton.addEventListener('click', this.handlePeekButtonClick);
             this.peekButton.addEventListener('mouseenter', this.handlePeekButtonHover);
-            this.peekButton.addEventListener('mousemove', this.handlePeekButtonMouseMove);
         }
 
         // Window events
@@ -315,105 +307,6 @@ class ProximitySidebar {
         }
     }
 
-    /**
-     * Handle peek button mouse movement for proximity effects
-     */
-    handlePeekButtonMouseMove(event) {
-        if (!this.peekButton) return;
-
-        // Update element rect if needed
-        if (!this.state.elementRect || this.shouldUpdateRect()) {
-            this.updateElementRect();
-        }
-
-        // Calculate distance using Pythagorean theorem
-        const distance = this.calculateDistance(event.clientX, event.clientY);
-        
-        // Find appropriate proximity zone
-        const newZone = this.findProximityZone(distance);
-        
-        // Update CSS classes only if zone changed (performance optimization)
-        if (newZone !== this.state.currentZone) {
-            this.updateCSSClasses(newZone);
-            this.state.currentZone = newZone;
-        }
-        
-        this.state.lastDistance = distance;
-    }
-
-    /**
-     * Calculate distance between mouse cursor and button center using Pythagorean theorem
-     */
-    calculateDistance(mouseX, mouseY) {
-        // Get button center coordinates
-        const centerX = this.state.elementCenter.x;
-        const centerY = this.state.elementCenter.y;
-        
-        // Calculate differences
-        const deltaX = mouseX - centerX;
-        const deltaY = mouseY - centerY;
-        
-        // Apply Pythagorean theorem: distance = √(x² + y²)
-        return Math.hypot(deltaX, deltaY);
-    }
-
-    /**
-     * Find the appropriate proximity zone based on distance
-     */
-    findProximityZone(distance) {
-        const zones = [
-            { distance: 40, className: 'proximity-1' },
-            { distance: 25, className: 'proximity-2' },
-            { distance: 15, className: 'proximity-3' }
-        ];
-        
-        // Sort zones by distance (smallest first) and find the first match
-        const sortedZones = [...zones].sort((a, b) => a.distance - b.distance);
-        
-        for (const zone of sortedZones) {
-            if (distance <= zone.distance) {
-                return zone;
-            }
-        }
-        
-        return null; // No zone matches (too far away)
-    }
-
-    /**
-     * Update CSS classes efficiently using classList
-     */
-    updateCSSClasses(newZone) {
-        // Remove all existing proximity classes
-        this.peekButton.classList.remove('proximity-1', 'proximity-2', 'proximity-3');
-        
-        // Add new proximity class if within a zone
-        if (newZone) {
-            this.peekButton.classList.add(newZone.className);
-        }
-    }
-
-    /**
-     * Update element rectangle and center coordinates
-     */
-    updateElementRect() {
-        if (!this.peekButton) return;
-        
-        this.state.elementRect = this.peekButton.getBoundingClientRect();
-        
-        // Calculate center coordinates
-        this.state.elementCenter = {
-            x: this.state.elementRect.left + (this.state.elementRect.width / 2),
-            y: this.state.elementRect.top + (this.state.elementRect.height / 2)
-        };
-    }
-
-    /**
-     * Check if element rect should be updated (scroll, resize, etc.)
-     */
-    shouldUpdateRect() {
-        // Update rect every 100 frames or when needed
-        return this.state.frameCount % 100 === 0;
-    }
 
     /**
      * Show the sidebar with animation
