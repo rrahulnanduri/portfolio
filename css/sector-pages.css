@@ -98,13 +98,13 @@
 }
 
 .sector-category {
-    background: #F24405;
+    background: #6bc1e0;
     color: white;
 }
 
 .sector-year {
     background: rgba(242, 68, 5, 0.1);
-    color: #F24405;
+    color: #6bc1e0;
 }
 
 .sector-status {
@@ -115,7 +115,7 @@
 .sector-title {
     font-size: 3rem;
     font-weight: 700;
-    color: #F25C05;
+    color: #6bc1e0;
     margin-bottom: 10px;
     line-height: 1.2;
 }
@@ -144,7 +144,7 @@
 .sector-tag {
     padding: 8px 16px;
     background: rgba(242, 68, 5, 0.1);
-    color: #F24405;
+    color: #6bc1e0;
     border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -356,7 +356,7 @@
     left: 0;
     width: 60px;
     height: 4px;
-    background: #F24405;
+    background: #6bc1e0;
     border-radius: 2px;
 }
 
@@ -414,7 +414,7 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: #F24405;
+    background: #6bc1e0;
     color: white;
     text-decoration: none;
     border-radius: 25px;
@@ -566,7 +566,7 @@
 }
 
 .footer-links a:hover {
-    color: #F24405;
+    color: #6bc1e0;
 }
 
 /* Responsive Design */

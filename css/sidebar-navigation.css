@@ -7,7 +7,9 @@
     --sidebar-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     --text-color: #333;
     --text-hover: #000;
-    --accent-color: #F24405;
+    --accent-color: #6bc1e0;
+    --primary-color: #6bc1e0;
+    --secondary-color: #366170;
     --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
     --animation-duration: 350ms;
     --detection-width: 60px;
