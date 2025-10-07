@@ -121,12 +121,12 @@
 }
 
 .sector-year {
-    background: rgba(242, 68, 5, 0.1);
+    background: rgba(107, 193, 224, 0.1);
     color: var(--primary-color);
 }
 
 .sector-status {
-    background: #F25C05;
+    background: var(--accent-color);
     color: white;
 }
 
@@ -161,7 +161,7 @@
 
 .sector-tag {
     padding: 8px 16px;
-    background: rgba(242, 68, 5, 0.1);
+    background: rgba(107, 193, 224, 0.1);
     color: var(--primary-color);
     border-radius: 25px;
     font-size: 0.9rem;

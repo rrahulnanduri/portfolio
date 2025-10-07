@@ -852,7 +852,7 @@ body {
 }
 
 .tag {
-    background: #F28705;
+    background: var(--accent-color);
     color: var(--text-light);
     padding: 0.6rem 1.2rem; /* Increased by 20%: 0.5*1.2=0.6, 1*1.2=1.2 */
     border-radius: 20px;
