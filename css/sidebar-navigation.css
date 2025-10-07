@@ -2,7 +2,7 @@
 :root {
     --sidebar-width: 280px;
     --sidebar-bg: rgba(255, 255, 255, 0.1);
-    --sidebar-backdrop: blur(20px) saturate(180%);
+    --sidebar-backdrop: blur(14px) saturate(180%);
     --sidebar-border: rgba(255, 255, 255, 0.2);
     --sidebar-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     --text-color: #333;
@@ -228,10 +228,72 @@ body {
     }
 }
 
+/* Peek Button Styles */
+.peek-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    width: 40px;
+    height: 40px;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--transition-timing);
+    box-shadow: 0 4px 12px rgba(242, 68, 5, 0.3);
+    outline: none;
+}
+
+.peek-button:hover {
+    transform: scale(1.2);
+    box-shadow: 0 6px 20px rgba(242, 68, 5, 0.4);
+}
+
+.peek-button:focus {
+    box-shadow: 0 0 0 3px rgba(242, 68, 5, 0.25);
+}
+
+.peek-button-icon {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.2s var(--transition-timing);
+}
+
+.peek-button:hover .peek-button-icon {
+    transform: scale(1.1);
+}
+
+/* Hide peek button when sidebar is visible */
+.proximity-sidebar.visible ~ .peek-button {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+/* Responsive peek button */
+@media (max-width: 768px) {
+    .peek-button {
+        width: 36px;
+        height: 36px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .peek-button-icon {
+        font-size: 16px;
+    }
+}
+
 /* Print styles */
 @media print {
     .proximity-sidebar,
-    .detection-zone {
+    .detection-zone,
+    .peek-button {
         display: none;
     }
 }

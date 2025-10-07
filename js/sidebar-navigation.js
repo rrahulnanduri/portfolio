@@ -18,6 +18,7 @@ class ProximitySidebar {
         // DOM elements
         this.sidebar = document.getElementById(sidebarId);
         this.detectionZone = document.getElementById('detectionZone');
+        this.peekButton = document.getElementById('peekButton');
         
         if (!this.sidebar) {
             console.error('ProximitySidebar: Sidebar element not found');
@@ -49,6 +50,8 @@ class ProximitySidebar {
         this.handleTouchStart = this.handleTouchStart.bind(this);
         this.handleTouchMove = this.handleTouchMove.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
+        this.handlePeekButtonClick = this.handlePeekButtonClick.bind(this);
+        this.handlePeekButtonHover = this.handlePeekButtonHover.bind(this);
 
         // Initialize
         this.init();
@@ -93,6 +96,12 @@ class ProximitySidebar {
             document.addEventListener('touchstart', this.handleTouchStart, passiveOptions);
             document.addEventListener('touchmove', this.handleTouchMove, passiveOptions);
             document.addEventListener('touchend', this.handleTouchEnd, passiveOptions);
+        }
+
+        // Peek button events
+        if (this.peekButton) {
+            this.peekButton.addEventListener('click', this.handlePeekButtonClick);
+            this.peekButton.addEventListener('mouseenter', this.handlePeekButtonHover);
         }
 
         // Window events
@@ -273,6 +282,28 @@ class ProximitySidebar {
         // Hide sidebar on orientation change for better UX
         if (this.state.isVisible) {
             this.hideSidebar();
+        }
+    }
+
+    /**
+     * Handle peek button click
+     */
+    handlePeekButtonClick(event) {
+        event.preventDefault();
+        this.toggleSidebar();
+    }
+
+    /**
+     * Handle peek button hover
+     */
+    handlePeekButtonHover() {
+        // Show sidebar on hover with a small delay
+        if (!this.state.isVisible) {
+            setTimeout(() => {
+                if (!this.state.isVisible) {
+                    this.showSidebar();
+                }
+            }, 300);
         }
     }
 
