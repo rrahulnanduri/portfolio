@@ -52,6 +52,7 @@ class ProximitySidebar {
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
         this.handlePeekButtonClick = this.handlePeekButtonClick.bind(this);
         this.handlePeekButtonHover = this.handlePeekButtonHover.bind(this);
+        this.handlePeekButtonMouseMove = this.handlePeekButtonMouseMove.bind(this);
 
         // Initialize
         this.init();
@@ -102,6 +103,7 @@ class ProximitySidebar {
         if (this.peekButton) {
             this.peekButton.addEventListener('click', this.handlePeekButtonClick);
             this.peekButton.addEventListener('mouseenter', this.handlePeekButtonHover);
+            this.peekButton.addEventListener('mousemove', this.handlePeekButtonMouseMove);
         }
 
         // Window events
@@ -304,6 +306,36 @@ class ProximitySidebar {
                     this.showSidebar();
                 }
             }, 300);
+        }
+    }
+
+    /**
+     * Handle peek button mouse movement for proximity effects
+     */
+    handlePeekButtonMouseMove(event) {
+        if (!this.peekButton) return;
+
+        const rect = this.peekButton.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+        
+        const distance = Math.sqrt(
+            Math.pow(mouseX - centerX, 2) + Math.pow(mouseY - centerY, 2)
+        );
+        
+        // Remove existing proximity classes
+        this.peekButton.classList.remove('proximity-1', 'proximity-2', 'proximity-3');
+        
+        // Add proximity class based on distance
+        if (distance < 15) {
+            this.peekButton.classList.add('proximity-3');
+        } else if (distance < 25) {
+            this.peekButton.classList.add('proximity-2');
+        } else if (distance < 40) {
+            this.peekButton.classList.add('proximity-1');
         }
     }
 
