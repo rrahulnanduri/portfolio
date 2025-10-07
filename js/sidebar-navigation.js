@@ -8,7 +8,7 @@ class ProximitySidebar {
         this.options = {
             detectionWidth: options.detectionWidth || 60,
             animationDuration: options.animationDuration || 350,
-            hideDelay: options.hideDelay || 800,
+            hideDelay: options.hideDelay || 200, // Much faster auto-hide
             enableKeyboard: options.enableKeyboard !== false,
             enableTouch: options.enableTouch !== false,
             debounceInterval: options.debounceInterval || 16, // ~60fps
