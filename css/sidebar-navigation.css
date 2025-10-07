@@ -1,0 +1,237 @@
+/* CSS Custom Properties for Easy Theming */
+:root {
+    --sidebar-width: 280px;
+    --sidebar-bg: rgba(255, 255, 255, 0.1);
+    --sidebar-backdrop: blur(20px) saturate(180%);
+    --sidebar-border: rgba(255, 255, 255, 0.2);
+    --sidebar-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --text-color: #333;
+    --text-hover: #000;
+    --accent-color: #F24405;
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-duration: 350ms;
+    --detection-width: 60px;
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --sidebar-bg: rgba(0, 0, 0, 0.2);
+        --sidebar-border: rgba(255, 255, 255, 0.1);
+        --text-color: #e0e0e0;
+        --text-hover: #ffffff;
+    }
+}
+
+/* Base styles and reset */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Main content styling */
+.main-content {
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* Detection zone for proximity sensing */
+.detection-zone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--detection-width);
+    height: 100vh;
+    z-index: 9998;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* Sidebar container */
+.proximity-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    z-index: 9999;
+    
+    /* Initially hidden behind viewport */
+    transform: translateX(-100%);
+    transition: transform var(--animation-duration) var(--transition-timing);
+    
+    /* Hardware acceleration */
+    will-change: transform;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    
+    /* Glassmorphism effect */
+    background: var(--sidebar-bg);
+    backdrop-filter: var(--sidebar-backdrop);
+    -webkit-backdrop-filter: var(--sidebar-backdrop);
+    border-right: 1px solid var(--sidebar-border);
+    box-shadow: var(--sidebar-shadow);
+    
+    /* Prevent content selection during animation */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Sidebar visible state */
+.proximity-sidebar.visible {
+    transform: translateX(0);
+}
+
+/* Sidebar content */
+.sidebar-content {
+    padding: 2rem 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Back button styling */
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--sidebar-border);
+    border-radius: 12px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s var(--transition-timing);
+    outline: none;
+    cursor: pointer;
+}
+
+.back-button:hover,
+.back-button:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent-color);
+    color: var(--text-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus styles for accessibility */
+.back-button:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Arrow icon */
+.arrow-icon {
+    font-size: 1.2em;
+    transition: transform 0.2s var(--transition-timing);
+}
+
+.back-button:hover .arrow-icon {
+    transform: translateX(-2px);
+}
+
+/* Navigation items */
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s var(--transition-timing);
+    font-size: 0.85rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-hover);
+    transform: translateX(4px);
+}
+
+.nav-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.nav-icon {
+    font-size: 1.1em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 260px;
+        --detection-width: 40px;
+    }
+    
+    .sidebar-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .back-button {
+        padding: 0.875rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --sidebar-width: 240px;
+        --detection-width: 30px;
+    }
+}
+
+/* High DPI display support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .proximity-sidebar {
+        backdrop-filter: var(--sidebar-backdrop) contrast(110%);
+        -webkit-backdrop-filter: var(--sidebar-backdrop) contrast(110%);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .proximity-sidebar {
+        transition: none;
+    }
+    
+    .back-button,
+    .nav-link {
+        transition: none;
+    }
+    
+    .arrow-icon {
+        transition: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .proximity-sidebar,
+    .detection-zone {
+        display: none;
+    }
+}

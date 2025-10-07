@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LayerLens - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=JetBrains+Mono:wght@400;700&display=swap&v=2" rel="stylesheet">
+    <link rel="stylesheet" href="css/sidebar-navigation.css">
     <style>
         /* CSS Variables for Color Scheme */
         :root {
@@ -280,13 +281,46 @@
     </style>
 </head>
 <body>
-    <!-- Back Navigation -->
-    <nav class="back-nav">
-        <a href="index.html" class="back-link">
-            <span class="back-arrow">←</span>
-            Back to Portfolio
-        </a>
+    <!-- Animated Sidebar Navigation -->
+    <nav class="proximity-sidebar" 
+         id="proximitySidebar" 
+         role="navigation" 
+         aria-label="Main navigation"
+         aria-hidden="true">
+        <div class="sidebar-content">
+            <a href="index.html" 
+               class="back-button" 
+               role="button"
+               aria-label="Back to Portfolio"
+               tabindex="-1">
+                <span class="arrow-icon" aria-hidden="true">←</span>
+                <span class="button-text">Back to Portfolio</span>
+            </a>
+            
+            <!-- Additional navigation items -->
+            <div class="nav-items">
+                <a href="index.html" class="nav-link" tabindex="-1">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+                <a href="hudson-wilder.html" class="nav-link" tabindex="-1">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-text">Hudson Wilder</span>
+                </a>
+                <a href="neptune-studio.html" class="nav-link" tabindex="-1">
+                    <span class="nav-icon">🎨</span>
+                    <span class="nav-text">Neptune Studio</span>
+                </a>
+                <a href="eco-aid.html" class="nav-link" tabindex="-1">
+                    <span class="nav-icon">🌱</span>
+                    <span class="nav-text">Eco Aid</span>
+                </a>
+            </div>
+        </div>
     </nav>
+
+    <!-- Detection zone for proximity -->
+    <div class="detection-zone" id="detectionZone" aria-hidden="true"></div>
 
     <div class="container">
         <!-- Project Header -->
@@ -381,5 +415,20 @@
             </div>
         </section>
     </div>
+
+    <!-- Initialize the animated sidebar -->
+    <script src="js/sidebar-navigation.js"></script>
+    <script>
+        // Initialize the sidebar when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = new ProximitySidebar('proximitySidebar', {
+                detectionWidth: 60,
+                animationDuration: 350,
+                hideDelay: 800,
+                enableKeyboard: true,
+                enableTouch: true
+            });
+        });
+    </script>
 </body>
 </html>
