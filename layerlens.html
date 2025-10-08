@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LayerLens - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=JetBrains+Mono:wght@400;700&display=swap&v=2" rel="stylesheet">
-    <link rel="stylesheet" href="css/sidebar-navigation.css">
+    <link rel="stylesheet" href="css/sidebar-navigation.css?v=3">
     <style>
         /* CSS Variables for Color Scheme */
         :root {
@@ -165,6 +165,10 @@
             margin-bottom: 0.5rem;
         }
 
+        .overview-card p {
+            color: var(--text-secondary);
+        }
+
         /* Technology Tags */
         .tech-tags {
             display: flex;
@@ -205,6 +209,14 @@
             color: var(--success-icon);
         }
 
+        .challenge-card p, .solution-card p {
+            color: var(--text-secondary);
+        }
+
+        .challenge-card h3, .solution-card h3 {
+            color: var(--accent-color);
+        }
+
         /* Links and Buttons */
         .project-links {
             display: flex;
@@ -237,6 +249,19 @@
         .btn-secondary:hover {
             background: var(--accent-color);
             color: white;
+        }
+
+        /* Content Text Colors */
+        .container p {
+            color: var(--text-secondary);
+        }
+
+        .container li {
+            color: var(--text-secondary);
+        }
+
+        .container strong {
+            color: var(--text-primary);
         }
 
         /* Responsive Design */
