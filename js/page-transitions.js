@@ -11,13 +11,17 @@ class SimplePageTransitions {
     }
 
     init() {
+        console.log('SimplePageTransitions: Starting initialization...');
+        
         // Add transition overlay to body
         this.createTransitionOverlay();
+        console.log('SimplePageTransitions: Overlay created');
         
         // Setup event listeners
         this.setupEventListeners();
+        console.log('SimplePageTransitions: Event listeners setup');
         
-        console.log('SimplePageTransitions initialized');
+        console.log('SimplePageTransitions initialized successfully');
     }
 
     createTransitionOverlay() {
@@ -42,15 +46,33 @@ class SimplePageTransitions {
     }
 
     setupEventListeners() {
+        console.log('SimplePageTransitions: Setting up event listeners...');
+        
         // Handle project card clicks
         const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach(card => {
+        console.log('SimplePageTransitions: Found', projectCards.length, 'project cards');
+        
+        projectCards.forEach((card, index) => {
+            console.log('SimplePageTransitions: Adding listener to card', index, card);
             card.addEventListener('click', (e) => {
+                console.log('SimplePageTransitions: Card clicked!', e);
                 e.preventDefault();
                 const href = card.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    const sectorId = href.substring(1);
-                    this.navigateToSector(sectorId);
+                console.log('SimplePageTransitions: Card href:', href);
+                
+                // Handle both #sector and sector.html formats
+                if (href) {
+                    let sectorId;
+                    if (href.startsWith('#')) {
+                        sectorId = href.substring(1);
+                    } else if (href.endsWith('.html')) {
+                        sectorId = href.replace('.html', '');
+                    }
+                    
+                    if (sectorId) {
+                        console.log('SimplePageTransitions: Navigating to sector:', sectorId);
+                        this.navigateToSector(sectorId);
+                    }
                 }
             });
         });
@@ -71,20 +93,30 @@ class SimplePageTransitions {
     }
 
     async navigateToSector(sectorId) {
-        if (this.isTransitioning) return;
+        console.log('SimplePageTransitions: navigateToSector called with:', sectorId);
+        console.log('SimplePageTransitions: isTransitioning:', this.isTransitioning);
+        
+        if (this.isTransitioning) {
+            console.log('SimplePageTransitions: Already transitioning, ignoring');
+            return;
+        }
         
         this.isTransitioning = true;
+        console.log('SimplePageTransitions: Starting transition...');
         
         try {
             // Show overlay
+            console.log('SimplePageTransitions: Showing overlay...');
             await this.showOverlay();
+            console.log('SimplePageTransitions: Overlay shown, navigating...');
             
             // Navigate to sector page
             const sectorUrl = `${sectorId}.html`;
+            console.log('SimplePageTransitions: Navigating to:', sectorUrl);
             window.location.href = sectorUrl;
             
         } catch (error) {
-            console.error('Navigation error:', error);
+            console.error('SimplePageTransitions: Navigation error:', error);
             this.hideOverlay();
             this.isTransitioning = false;
         }
@@ -110,12 +142,18 @@ class SimplePageTransitions {
     }
 
     showOverlay() {
+        console.log('SimplePageTransitions: showOverlay called');
+        console.log('SimplePageTransitions: overlay element:', this.overlay);
+        
         return new Promise((resolve) => {
+            console.log('SimplePageTransitions: Setting overlay styles...');
             this.overlay.style.visibility = 'visible';
             this.overlay.style.opacity = '1';
             this.overlay.style.transform = 'translateX(0)';
             
+            console.log('SimplePageTransitions: Overlay styles set, waiting for transition...');
             setTimeout(() => {
+                console.log('SimplePageTransitions: Overlay transition complete');
                 resolve();
             }, this.transitionDuration);
         });
