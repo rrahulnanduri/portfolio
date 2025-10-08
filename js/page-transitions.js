@@ -182,5 +182,16 @@ class SimplePageTransitions {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    window.pageTransitions = new SimplePageTransitions();
+    // Only initialize on homepage (index.html or root)
+    const currentPage = window.location.pathname.split('/').pop();
+    const isHomepage = !currentPage || currentPage === 'index.html' || currentPage === '';
+    
+    console.log('SimplePageTransitions: Current page:', currentPage, 'Is homepage:', isHomepage);
+    
+    if (isHomepage) {
+        console.log('SimplePageTransitions: Initializing on homepage...');
+        window.pageTransitions = new SimplePageTransitions();
+    } else {
+        console.log('SimplePageTransitions: Skipping initialization on sector page');
+    }
 });
