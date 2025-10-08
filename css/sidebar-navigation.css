@@ -1,4 +1,36 @@
-/* CSS Custom Properties for Easy Theming */
+/*
+================================================================================
+SIDEBAR NAVIGATION SYSTEM - CSS STYLES
+================================================================================
+This file contains all styles for the proximity-based sidebar navigation system.
+It includes styles for:
+- Proximity sidebar with glassmorphism effects
+- Peek button with hover animations
+- Navigation links with smooth transitions
+- Detection zone for cursor proximity
+- Responsive design for mobile devices
+- Dark theme support
+- Accessibility features (focus states, reduced motion)
+
+Key Components:
+- .proximity-sidebar: Main sidebar container with backdrop blur
+- .peek-button: Small button that triggers sidebar
+- .detection-zone: Invisible area for proximity detection
+- .nav-link: Navigation items with hover effects
+- .back-link: Back to portfolio button
+
+Technical Features:
+- CSS custom properties for easy theming
+- Hardware-accelerated transforms for smooth animations
+- Backdrop filter for glassmorphism effect
+- Responsive breakpoints for mobile optimization
+- Dark theme support with media queries
+================================================================================
+*/
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES - THEME SYSTEM
+   ============================================================================ */
 :root {
     --sidebar-width: 280px;
     --sidebar-bg: rgba(255, 255, 255, 0.1);

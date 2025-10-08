@@ -1,17 +1,39 @@
-/* Color Scheme Variables */
+/*
+================================================================================
+PORTFOLIO WEBSITE - MAIN STYLESHEET
+================================================================================
+This file contains the core styling for the portfolio website including:
+- Color scheme variables for consistent theming
+- Layout system for homepage and project pages
+- Interactive elements (dot grid background, hover effects)
+- Responsive design for all screen sizes
+- Component styles for project cards and navigation
+================================================================================
+*/
+
+/* ============================================================================
+   COLOR SCHEME VARIABLES
+   ============================================================================ */
 :root {
-    --primary-color: #6bc1e0;
-    --secondary-color: #366170;
-    --accent-color: #6bcde0;
-    --background-color: #F2F0E4;
-    --card-background: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #333333;
-    --text-light: #ffffff;
-    --border-color: #e5e5e5;
-    --shadow-light: rgba(0, 0, 0, 0.08);
-    --shadow-medium: rgba(0, 0, 0, 0.12);
-    --shadow-strong: rgba(0, 0, 0, 0.2);
+    /* Primary Colors - Blue Theme */
+    --primary-color: #6bc1e0;      /* Light blue - used for accents, links, highlights */
+    --secondary-color: #366170;     /* Dark blue-gray - used for cards, backgrounds */
+    --accent-color: #6bcde0;       /* Light blue variant - used for tags, buttons */
+    
+    /* Background Colors */
+    --background-color: #F2F0E4;   /* Light beige - main page background */
+    --card-background: #ffffff;    /* White - card and content backgrounds */
+    
+    /* Text Colors */
+    --text-primary: #1a1a1a;        /* Dark text - headings, important content */
+    --text-secondary: #333333;     /* Medium gray - body text, descriptions */
+    --text-light: #ffffff;         /* White text - used on dark backgrounds */
+    
+    /* UI Elements */
+    --border-color: #e5e5e5;       /* Light gray - borders, dividers */
+    --shadow-light: rgba(0, 0, 0, 0.08);   /* Subtle shadows for depth */
+    --shadow-medium: rgba(0, 0, 0, 0.12);  /* Medium shadows for cards */
+    --shadow-strong: rgba(0, 0, 0, 0.2);    /* Strong shadows for emphasis */
 }
 
 /* Reset and Base Styles */

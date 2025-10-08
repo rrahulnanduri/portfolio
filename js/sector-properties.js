@@ -1,9 +1,21 @@
-/**
- * SECTOR PROPERTIES SYSTEM
- * 
- * This system standardizes all sector data and ensures consistent
- * structure across the entire portfolio.
- */
+/*
+================================================================================
+SECTOR PROPERTIES SYSTEM - CENTRAL DATA MANAGEMENT
+================================================================================
+This system manages all portfolio project data in a standardized format.
+It provides a centralized way to:
+- Store project information (title, description, technologies, etc.)
+- Ensure consistent data structure across all pages
+- Enable easy addition of new projects
+- Support dynamic rendering of project cards and detail pages
+
+Key Features:
+- Standardized data structure for all projects
+- Easy data retrieval and filtering
+- Support for different project types and mockups
+- Centralized management for easy updates
+================================================================================
+*/
 
 class SectorProperties {
     constructor() {

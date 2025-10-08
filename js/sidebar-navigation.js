@@ -1,7 +1,33 @@
-/**
- * ProximitySidebar - Sophisticated animated sidebar with proximity detection
- * Supports mouse, touch, and keyboard interactions with accessibility features
- */
+/*
+================================================================================
+PROXIMITY SIDEBAR NAVIGATION SYSTEM
+================================================================================
+This system provides an interactive sidebar that appears when the cursor
+approaches the left edge of the screen. It includes:
+
+Key Features:
+- Proximity detection for automatic show/hide
+- Smooth animations with customizable timing
+- Touch support for mobile devices
+- Keyboard navigation and accessibility
+- Auto-hide functionality with configurable delay
+- Peek button for manual control
+
+Technical Implementation:
+- Uses requestAnimationFrame for smooth animations
+- Debounced event handlers for performance
+- CSS transforms for hardware acceleration
+- ARIA attributes for accessibility
+- Touch gesture recognition for mobile
+
+Usage:
+- Automatically initializes when DOM is ready
+- Detects cursor proximity to left edge (60px default)
+- Shows sidebar with smooth slide-in animation
+- Auto-hides when cursor moves away (200ms delay)
+- Supports keyboard navigation (Escape to close)
+================================================================================
+*/
 class ProximitySidebar {
     constructor(sidebarId, options = {}) {
         // Configuration options

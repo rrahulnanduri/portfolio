@@ -1,6 +1,34 @@
-/* ========================================
-   SECTOR PAGES STYLES
-   ======================================== */
+/*
+================================================================================
+SECTOR PAGES STYLES - PROJECT DETAIL PAGES
+================================================================================
+This file contains all styles for individual project detail pages.
+It provides styling for:
+- Project hero sections with titles and descriptions
+- Overview cards with project information
+- Challenge and solution sections
+- Feature highlights and results
+- Technology tags and project links
+- Responsive design for all screen sizes
+- Consistent card-based layout system
+
+Key Components:
+- .sector-hero: Top section with project title and description
+- .overview-grid: Grid layout for project overview cards
+- .challenges-grid: Layout for challenges and solutions
+- .features-grid: Grid for key features
+- .results-grid: Layout for project results
+- .tech-tag: Styling for technology tags
+- .project-link: Styling for external links
+
+Design System:
+- Consistent color scheme with CSS variables
+- Card-based layout with subtle shadows
+- Responsive grid system
+- Hover effects and transitions
+- Accessibility considerations
+================================================================================
+*/
 
 /* Color Scheme Variables */
 :root {

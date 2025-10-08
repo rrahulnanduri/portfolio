@@ -1,9 +1,32 @@
-/**
- * SECTOR PAGE RENDERER
- * 
- * This script handles the dynamic rendering of sector pages
- * using the standardized sector properties system.
- */
+/*
+================================================================================
+SECTOR PAGE DYNAMIC RENDERING SYSTEM
+================================================================================
+This system handles the dynamic rendering of individual project detail pages.
+It takes data from the SectorProperties system and creates a complete
+project page with all sections populated.
+
+Key Features:
+- Dynamic content rendering from centralized data
+- Consistent page structure across all projects
+- Error handling for missing projects
+- SEO optimization with dynamic meta tags
+- Responsive design support
+
+How it works:
+1. Gets project data from SectorProperties system
+2. Renders hero section with project title and description
+3. Creates overview section with project details
+4. Generates challenges and solutions sections
+5. Populates features and results sections
+6. Handles navigation and external links
+
+Usage:
+- Automatically initializes on project pages
+- Uses sector ID from URL to load correct data
+- Falls back to error page if project not found
+================================================================================
+*/
 
 class SectorPage {
     constructor() {
