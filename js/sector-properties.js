@@ -33,7 +33,7 @@ class SectorProperties {
             title: 'LayerLens',
             subtitle: 'Design System & Navigation Tool',
             description: 'Introduces two features that simplify navigation and reduce cognitive load in complex, collaborative files.',
-            tags: ['UX/UI Design', 'UX Research', 'Design Systems'],
+            tags: ['UX/UI Design', 'UX Research'],
             category: 'Design Tools',
             sectorImage: 'layerlens-mockup', // CSS class for styling
             mockupType: 'image', // app, browser, mobile, custom, image
@@ -75,8 +75,8 @@ class SectorProperties {
             id: 'hudson-wilder',
             title: 'Hudson Wilder',
             subtitle: 'E-commerce Platform',
-            description: 'Brought a luxury glassware brand to life through immersive e-commerce design and seamless user experience.',
-            tags: ['E-commerce', 'Visual Design', 'Brand Identity'],
+            description: 'Designed digital and brand experiences, spanning e-commerce sites and studio work.',
+            tags: ['UX/UI Design', 'Visual Design'],
             category: 'E-commerce',
             sectorImage: 'hudson-wilder-mockup', // CSS class for styling
             mockupType: 'browser', // app, browser, mobile, custom, image
@@ -118,8 +118,8 @@ class SectorProperties {
             id: 'neptune-studio',
             title: 'Neptune Studio',
             subtitle: 'Music Production Platform',
-            description: 'Brought a music studio\'s creative vision to life through immersive web design and interactive audio experiences.',
-            tags: ['Music', 'Visual Design', 'Interactive Design'],
+            description: 'Brought a music studio\'s creative vision to life through immersive web design',
+            tags: ['Visual Design'],
             category: 'Creative Platforms',
             sectorImage: 'neptune-studio-mockup', // CSS class for styling
             mockupType: 'app', // app, browser, mobile, custom, image
@@ -161,8 +161,8 @@ class SectorProperties {
             id: 'eco-aid',
             title: 'Eco A.I.D',
             subtitle: 'Sustainable AI Framework',
-            description: 'Developed a comprehensive framework for sustainable AI implementation in enterprise environments.',
-            tags: ['AI/ML', 'Sustainability', 'Enterprise', 'UX Research'],
+            description: 'Sustainable AI Framework',
+            tags: ['UX/UI Design', 'UX Research'],
             category: 'AI & Sustainability',
             sectorImage: 'eco-aid-mockup', // CSS class for styling
             mockupType: 'app', // app, browser, mobile, custom, image
