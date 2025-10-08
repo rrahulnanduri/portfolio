@@ -6,7 +6,7 @@
     --background-color: #F2F0E4;
     --card-background: #ffffff;
     --text-primary: #1a1a1a;
-    --text-secondary: #666666;
+    --text-secondary: #333333;
     --text-light: #ffffff;
     --border-color: #e5e5e5;
     --shadow-light: rgba(0, 0, 0, 0.08);
@@ -121,13 +121,13 @@ body {
 
 .nav-subtitle {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--text-secondary);
     margin-top: 0.25rem;
     display: block;
 }
 
 .external-icon {
-    color: #666;
+    color: var(--text-secondary);
     opacity: 0.7;
     transition: opacity 0.2s ease;
 }
@@ -252,7 +252,7 @@ body {
 .layer-level {
     font-size: 0.8rem;
     font-weight: 500;
-    color: #666;
+    color: var(--text-secondary);
     min-width: 60px;
 }
 
@@ -270,7 +270,7 @@ body {
 
 .ecommerce-header p {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
 
@@ -353,7 +353,7 @@ body {
 
 .framework-example p {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.4;
 }
 
@@ -739,7 +739,7 @@ body {
 
 .content-section p {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -836,7 +836,7 @@ body {
 
 .sector-intro {
     font-size: 1.2rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 2rem;
     max-width: 800px;
@@ -935,7 +935,7 @@ body {
 
 .content-section p {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 1rem;
 }
@@ -947,7 +947,7 @@ body {
 
 .content-section li {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 0.5rem;
 }
@@ -973,7 +973,7 @@ body {
 }
 
 .feature-card p {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 1rem;
 }
 
@@ -1147,7 +1147,7 @@ blockquote {
     padding: 1.5rem;
     margin: 1.5rem 0;
     font-style: italic;
-    color: #666;
+    color: var(--text-secondary);
 }
 
 cite {

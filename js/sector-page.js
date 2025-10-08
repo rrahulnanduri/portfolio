@@ -305,7 +305,7 @@ class SectorPage {
             <div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center;">
                 <div>
                     <h1 style="color: #F24405; margin-bottom: 20px;">Sector Not Found</h1>
-                    <p style="color: #666; margin-bottom: 30px;">The requested sector could not be found.</p>
+                    <p style="color: #333; margin-bottom: 30px;">The requested sector could not be found.</p>
                     <a href="index.html" style="background: #F24405; color: white; padding: 12px 24px; text-decoration: none; border-radius: 25px;">Back to Portfolio</a>
                 </div>
             </div>
