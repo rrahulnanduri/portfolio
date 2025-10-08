@@ -180,18 +180,17 @@ class SimplePageTransitions {
     }
 }
 
-// Initialize when DOM is loaded
+// Make SimplePageTransitions available globally
+window.SimplePageTransitions = SimplePageTransitions;
+
+// Auto-initialize only on sector pages (not homepage)
 document.addEventListener('DOMContentLoaded', function() {
-    // Only initialize on homepage (index.html or root)
     const currentPage = window.location.pathname.split('/').pop();
     const isHomepage = !currentPage || currentPage === 'index.html' || currentPage === '';
     
     console.log('SimplePageTransitions: Current page:', currentPage, 'Is homepage:', isHomepage);
     
-    if (isHomepage) {
-        console.log('SimplePageTransitions: Initializing on homepage...');
-        window.pageTransitions = new SimplePageTransitions();
-    } else {
-        console.log('SimplePageTransitions: Skipping initialization on sector page');
+    if (!isHomepage) {
+        console.log('SimplePageTransitions: Skipping auto-initialization on sector page');
     }
 });
