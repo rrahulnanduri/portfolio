@@ -65,10 +65,121 @@ body {
     background: transparent;
 }
 
-/* Container Layout */
+/* ============================================================================
+   SMOOTH PAGE TRANSITIONS USING CSS :TARGET
+   ============================================================================ */
+
+/* Transition anchors - hidden but functional */
+.transition-anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Sector sections - full screen with smooth transitions */
+.sector-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--background-color);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
+    overflow-y: auto;
+}
+
+.sector-content {
+    max-width: 1200px;
+    padding: 40px;
+    text-align: center;
+}
+
+.sector-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+.sector-content p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-button a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.back-button a:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Target-based transitions */
+#homepage:target ~ .container {
+    transform: translateX(0);
+}
+
+#layerlens:target ~ #layerlens {
+    transform: translateX(0);
+}
+
+#hudson-wilder:target ~ #hudson-wilder {
+    transform: translateX(0);
+}
+
+#neptune-studio:target ~ #neptune-studio {
+    transform: translateX(0);
+}
+
+#eco-aid:target ~ #eco-aid {
+    transform: translateX(0);
+}
+
+/* Container slide out when sector is targeted */
+#layerlens:target ~ .container,
+#hudson-wilder:target ~ .container,
+#neptune-studio:target ~ .container,
+#eco-aid:target ~ .container {
+    transform: translateX(-100%);
+}
+
+/* Container Layout with smooth transitions */
 .container {
     display: grid;
     grid-template-columns: 300px 1fr;
+    transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
     min-height: 100vh;
     max-width: 1400px;
     margin: 0 auto;
