@@ -239,8 +239,6 @@
     <!-- Sector Properties System -->
     <script src="js/sector-properties.js"></script>
     
-    <!-- Page Transitions -->
-    <script src="js/page-transitions.js"></script>
     
     <script>
         // Enhanced Dot Grid - Step 2: Adding cursor interaction
@@ -450,13 +448,6 @@
         // Initialize sector rendering
         document.addEventListener('DOMContentLoaded', function() {
             renderSectors();
-            
-            // Initialize transitions AFTER sectors are rendered
-            setTimeout(() => {
-                if (window.SimplePageTransitions) {
-                    window.pageTransitions = new window.SimplePageTransitions();
-                }
-            }, 100);
         });
 
         function renderSectors() {

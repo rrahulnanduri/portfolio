@@ -175,11 +175,10 @@ body {
     transform: translateX(-100%);
 }
 
-/* Container Layout with smooth transitions */
+/* Container Layout */
 .container {
     display: grid;
     grid-template-columns: 300px 1fr;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     min-height: 100vh;
     max-width: 1400px;
     margin: 0 auto;
@@ -187,28 +186,6 @@ body {
     padding: 2rem;
 }
 
-/* Sidebar transitions */
-.sidebar {
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-}
-
-/* Main content transitions */
-.main-content {
-    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: margin-left;
-}
-
-/* Project card hover effects */
-.project-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, box-shadow;
-}
-
-.project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
 
 /* Sidebar */
 .sidebar {
