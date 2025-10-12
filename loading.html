@@ -29,7 +29,7 @@
                 #ddd;
             background-size: calc(100%/6 + 1px) 200%;
             background-repeat: no-repeat;
-            animation: l12 2s infinite;
+            animation: l12 2s infinite 1s; /* 1 second delay before animation starts */
         }
 
         @keyframes l12 {
@@ -49,11 +49,12 @@
     <script>
         // Set session storage before redirecting
         sessionStorage.setItem('portfolioLoaded', 'true');
+        sessionStorage.setItem('fromLoading', 'true');
         
-        // Redirect to homepage after 4 seconds (2 complete animation cycles)
+        // Redirect to homepage after 7 seconds (3 complete animation cycles)
         setTimeout(function() {
             window.location.href = 'index.html';
-        }, 4000);
+        }, 7000);
     </script>
 </body>
 </html>

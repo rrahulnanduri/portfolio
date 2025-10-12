@@ -32,6 +32,96 @@
     <link rel="stylesheet" href="css/styles.css">
     
     <!-- ============================================================================
+         FADE-IN ANIMATION STYLES
+         ============================================================================ -->
+    <style>
+        /* Fade-in animation for homepage */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 3s ease-out forwards;
+        }
+
+        .fade-in-delay-1 {
+            opacity: 0;
+            animation: fadeIn 2.5s ease-out 0.8s forwards;
+        }
+
+        .fade-in-delay-2 {
+            opacity: 0;
+            animation: fadeIn 2s ease-out 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* All components use bottom-up animation */
+
+        /* Content is visible by default */
+        .container {
+            opacity: 1;
+        }
+        
+        /* Hide content only when loading animation should play */
+        .loading-transition .container {
+            opacity: 0;
+        }
+        
+        /* Ensure sidebar and main content are visible by default */
+        .sidebar, .main-content {
+            opacity: 1;
+        }
+        
+        /* Hide elements only during loading transition */
+        .loading-transition .sidebar,
+        .loading-transition .main-content {
+            opacity: 0;
+        }
+        
+        /* Hide content immediately if coming from loading page */
+        .loading-transition .project-card {
+            opacity: 0;
+        }
+        
+        /* Ensure all content is hidden during loading transition */
+        .loading-transition * {
+            transition: none !important;
+        }
+        
+        .loading-transition .container,
+        .loading-transition .sidebar,
+        .loading-transition .main-content,
+        .loading-transition .project-card {
+            opacity: 0 !important;
+            transform: translateY(60px) !important;
+        }
+        
+        /* Sidebar will be dynamically rendered, no static CSS needed */
+        
+        /* Dot grid fade-in animation */
+        .dot-grid-fade-in {
+            opacity: 0;
+            animation: dotGridFadeIn 1.5s ease-out forwards;
+        }
+        
+        @keyframes dotGridFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    
+    <!-- ============================================================================
          FONT LOADING - OPTIMIZED FOR PERFORMANCE
          ============================================================================ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,6 +136,24 @@
         // Check if we should show loading screen
         if (!sessionStorage.getItem('portfolioLoaded')) {
             window.location.href = 'loading.html';
+        }
+        
+        // Sidebar will be dynamically created, no need to check for it here
+        
+        // Set loading transition class immediately if coming from loading page
+        if (sessionStorage.getItem('fromLoading')) {
+            console.log('🚀 From loading page detected - setting loading transition class');
+            console.log('⏰ Timestamp:', Date.now());
+            document.documentElement.style.setProperty('--loading-transition', '1');
+            document.body.classList.add('loading-transition');
+            console.log('✅ Loading transition class applied');
+            
+            // Also add a class to the html element for immediate CSS targeting
+            document.documentElement.classList.add('from-loading');
+            
+            // Sidebar will be created dynamically by renderSidebar()
+        } else {
+            console.log('📄 Direct visit - no loading transition needed');
         }
     </script>
 
@@ -69,50 +177,9 @@
          ============================================================================ -->
     <div class="container">
         <!-- ========================================================================
-             LEFT SIDEBAR - PROFILE AND NAVIGATION
+             LEFT SIDEBAR - PROFILE AND NAVIGATION (DYNAMICALLY RENDERED)
              ======================================================================== -->
-        <aside class="sidebar">
-            <div class="profile-card">
-                <h1 class="profile-name">Rahul Nanduri</h1>
-                <p class="profile-pronunciation">['raah-ul']</p>
-                <p class="profile-description">Aspiring Product Manager with a focus on delivering exceptional digital experiences through exceptional collaboration.</p>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <a href="about.html" class="nav-item">
-                    <span class="nav-label">About me</span>
-                    <span class="nav-subtitle">Passions, hobbies...</span>
-                </a>
-                <a href="playground.html" class="nav-item">
-                    <span class="nav-label">Playground</span>
-                    <span class="nav-subtitle">Branding, Motion, 3D...</span>
-                </a>
-                <a href="resume.pdf" class="nav-item external">
-                    <span class="nav-label">Resume</span>
-                    <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8 8L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a href="mailto:rahul.nanduri@example.com" class="nav-item external">
-                    <span class="nav-label">Email</span>
-                    <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8 8L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a href="https://linkedin.com/in/rahulnanduri" class="nav-item external" target="_blank">
-                    <span class="nav-label">LinkedIn</span>
-                    <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8 8L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </nav>
-        </aside>
+        <!-- Sidebar will be dynamically created by renderSidebar() function -->
 
     <!-- Main Content -->
     <main class="main-content">
@@ -259,53 +326,10 @@
                     </div>
                 </div>
                 </a>
-        </div>
-    </main>
-</div>
-
-<!-- ============================================================================
-     GLOBAL FOOTER
-     ============================================================================ -->
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>Rahul Nanduri</h3>
-            <p>Aspiring Product Manager focused on delivering exceptional digital experiences through collaboration.</p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/rahulnanduri" target="_blank" aria-label="LinkedIn">in</a>
-                <a href="mailto:rahul.nanduri@example.com" aria-label="Email">@</a>
-                <a href="resume.pdf" target="_blank" aria-label="Resume">CV</a>
             </div>
-        </div>
-        
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="playground.html">Playground</a>
-        </div>
-        
-        <div class="footer-section">
-            <h3>Projects</h3>
-            <a href="layerlens.html">LayerLens</a>
-            <a href="hudson-wilder.html">Hudson Wilder</a>
-            <a href="neptune-studio.html">Neptune Studio</a>
-            <a href="eco-aid.html">Eco A.I.D</a>
-        </div>
-        
-        <div class="footer-section">
-            <h3>Connect</h3>
-            <p>Let's work together on your next project</p>
-            <a href="contact.html">Get in Touch</a>
-            <a href="mailto:rahul.nanduri@example.com">rahul.nanduri@example.com</a>
-        </div>
+    </main>
     </div>
 
-    <div class="footer-bottom">
-        <p>&copy; 2024 Rahul Nanduri. All rights reserved. Built with passion for great design.</p>
-    </div>
-</footer>
 
 
     <!-- Sector Properties System -->
@@ -519,16 +543,151 @@
 
         // Initialize the simple dot grid
     document.addEventListener('DOMContentLoaded', function() {
-        new SimpleDotGrid();
-        
         // Mark portfolio as loaded
         sessionStorage.setItem('portfolioLoaded', 'true');
+        
+          // Sidebar will be created dynamically by renderSidebar()
+        
+        // Delay dot grid if coming from loading page
+        if (sessionStorage.getItem('fromLoading')) {
+            // Delay dot grid by 0.2 seconds to appear right as loading finishes
+            setTimeout(function() {
+                new SimpleDotGrid();
+                // Apply fade-in animation to the canvas
+                const canvas = document.querySelector('canvas');
+                if (canvas) {
+                    canvas.classList.add('dot-grid-fade-in');
+                }
+            }, 200);
+        } else {
+            // Show dots immediately for direct visits
+            new SimpleDotGrid();
+        }
+        
+        // Fade-in animation sequence (only if coming from loading page)
+        if (sessionStorage.getItem('fromLoading')) {
+            // Add loading transition class to hide content initially
+            document.body.classList.add('loading-transition');
+            
+            // Clear the loading flag immediately
+            sessionStorage.removeItem('fromLoading');
+            
+            setTimeout(function() {
+                // Animate main content first (starts immediately)
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.classList.add('fade-in-delay-1');
+                }
+
+                  // Animate project cards second with stagger (from bottom)
+                  setTimeout(function() {
+                      const projectCards = document.querySelectorAll('.project-card');
+                      projectCards.forEach((card, index) => {
+                          setTimeout(function() {
+                              card.classList.add('fade-in-delay-2');
+                          }, index * 150); // Stagger each card by 150ms
+                      });
+                  }, 800);
+
+                  // Sidebar animation is handled by renderSidebar() function
+
+            }, 100); // Start with slight delay
+        }
+        
+          // Fallback: Ensure content is always visible after 2 seconds
+          setTimeout(function() {
+              // Remove loading transition class if it exists
+              document.body.classList.remove('loading-transition');
+              document.documentElement.classList.remove('from-loading');
+              
+              // Ensure all content is visible
+              const container = document.querySelector('.container');
+              const mainContent = document.querySelector('.main-content');
+              
+              if (container) container.style.opacity = '1';
+              if (mainContent) mainContent.style.opacity = '1';
+              // Sidebar is handled by renderSidebar() function
+          }, 2000);
     });
 
         // Initialize sector rendering
         document.addEventListener('DOMContentLoaded', function() {
             renderSectors();
+            renderSidebar();
         });
+        
+        function renderSidebar() {
+            const sidebarContainer = document.querySelector('.container');
+            if (!sidebarContainer) return;
+
+            const sidebarHTML = `
+                <aside class="sidebar">
+                    <div class="profile-card">
+                        <h1 class="profile-name">Rahul Nanduri</h1>
+                        <p class="profile-pronunciation">['raah-ul']</p>
+                        <p class="profile-description">Aspiring Product Manager with a focus on delivering exceptional digital experiences through exceptional collaboration.</p>
+                    </div>
+                    
+                    <nav class="sidebar-nav">
+                        <a href="about.html" class="nav-item">
+                            <span class="nav-label">About me</span>
+                            <span class="nav-subtitle">Passions, hobbies...</span>
+                        </a>
+                        <a href="playground.html" class="nav-item">
+                            <span class="nav-label">Playground</span>
+                            <span class="nav-subtitle">Branding, Motion, 3D...</span>
+                        </a>
+                        <a href="resume.pdf" class="nav-item external">
+                            <span class="nav-label">Resume</span>
+                            <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 8L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:rahul.nanduri@example.com" class="nav-item external">
+                            <span class="nav-label">Email</span>
+                            <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 8L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/rahulnanduri" class="nav-item external" target="_blank">
+                            <span class="nav-label">LinkedIn</span>
+                            <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 8L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </nav>
+                </aside>
+            `;
+            
+            // Insert sidebar at the beginning of the container
+            sidebarContainer.insertAdjacentHTML('afterbegin', sidebarHTML);
+            const newSidebar = sidebarContainer.querySelector('.sidebar');
+
+            // Handle animation based on whether coming from loading page
+            if (sessionStorage.getItem('fromLoading')) {
+                // Hide sidebar initially when coming from loading page
+                newSidebar.style.display = 'none';
+                
+                // Show sidebar after delay (like cards) with bottom-up animation
+                setTimeout(function() {
+                    newSidebar.style.display = 'block';
+                    newSidebar.style.opacity = '0';
+                    newSidebar.style.transform = 'translateY(60px)';
+                    newSidebar.classList.add('fade-in-delay-2'); // Use same animation as project cards
+                }, 2000); // Sidebar appears at same time as project cards
+            } else {
+                // Show sidebar immediately for direct visits
+                newSidebar.style.display = 'block';
+                newSidebar.style.opacity = '1';
+                newSidebar.style.transform = 'translateY(0)';
+            }
+        }
 
         function renderSectors() {
             const sectorProperties = window.SectorProperties;
