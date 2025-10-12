@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ============================================================================
+         404 ERROR PAGE - META INFORMATION
+         ============================================================================ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Rahul Nanduri Portfolio</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Rahul Nanduri's portfolio homepage.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- ============================================================================
+         STYLESHEETS
+         ============================================================================ -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- ============================================================================
+         FONT LOADING - OPTIMIZED FOR PERFORMANCE
+         ============================================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 404 Page Specific Styles */
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background: var(--background-color);
+        }
+
+        .error-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .error-code {
+            font-family: 'VT323', monospace;
+            font-size: 8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-family: 'VT323', monospace;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .error-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .error-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .error-btn.secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .error-btn.secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .error-illustration {
+            margin: 40px 0;
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .error-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================================================
+         404 ERROR PAGE CONTENT
+         ============================================================================ -->
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-code">404</div>
+            <div class="error-illustration">🔍</div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-message">
+                Oops! The page you're looking for seems to have wandered off into the digital void. 
+                Don't worry, even the best designers sometimes lose their way. Let's get you back on track!
+            </p>
+            
+            <div class="error-actions">
+                <a href="index.html" class="error-btn">🏠 Back to Home</a>
+                <a href="contact.html" class="error-btn secondary">💬 Contact Me</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================================
+         GLOBAL FOOTER
+         ============================================================================ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Rahul Nanduri</h3>
+                <p>Aspiring Product Manager focused on delivering exceptional digital experiences through collaboration.</p>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/rahulnanduri" target="_blank" aria-label="LinkedIn">in</a>
+                    <a href="mailto:rahul.nanduri@example.com" aria-label="Email">@</a>
+                    <a href="resume.pdf" target="_blank" aria-label="Resume">CV</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="playground.html">Playground</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Projects</h3>
+                <a href="layerlens.html">LayerLens</a>
+                <a href="hudson-wilder.html">Hudson Wilder</a>
+                <a href="neptune-studio.html">Neptune Studio</a>
+                <a href="eco-aid.html">Eco A.I.D</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>Let's work together on your next project</p>
+                <a href="contact.html">Get in Touch</a>
+                <a href="mailto:rahul.nanduri@example.com">rahul.nanduri@example.com</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rahul Nanduri. All rights reserved. Built with passion for great design.</p>
+        </div>
+    </footer>
+</body>
+</html>

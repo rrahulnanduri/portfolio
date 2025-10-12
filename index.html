@@ -6,7 +6,25 @@
          ============================================================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahul Nanduri - Portfolio</title>
+    <title>Rahul Nanduri - Product Manager & UX Designer Portfolio</title>
+    <meta name="description" content="Rahul Nanduri - Aspiring Product Manager focused on delivering exceptional digital experiences through collaboration. Explore my UX/UI design projects and case studies.">
+    <meta name="keywords" content="Rahul Nanduri, product manager, UX designer, portfolio, case studies, digital experiences, collaboration">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Rahul Nanduri - Product Manager & UX Designer Portfolio">
+    <meta property="og:description" content="Aspiring Product Manager focused on delivering exceptional digital experiences through collaboration. Explore my UX/UI design projects and case studies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rrahulnanduri.github.io/portfolio/">
+    <meta property="og:image" content="https://rrahulnanduri.github.io/portfolio/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rahul Nanduri - Product Manager & UX Designer Portfolio">
+    <meta name="twitter:description" content="Aspiring Product Manager focused on delivering exceptional digital experiences through collaboration. Explore my UX/UI design projects and case studies.">
+    <meta name="twitter:image" content="https://rrahulnanduri.github.io/portfolio/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     
     <!-- ============================================================================
          STYLESHEETS
@@ -21,6 +39,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- ============================================================================
+         LOADING SCREEN CHECK
+         ============================================================================ -->
+    <script>
+        // Check if we should show loading screen
+        if (!sessionStorage.getItem('portfolioLoaded')) {
+            window.location.href = 'loading.html';
+        }
+    </script>
+
     <!-- ============================================================================
          TRANSITION ANCHORS FOR SMOOTH PAGE TRANSITIONS
          ============================================================================ -->
@@ -59,7 +87,7 @@
                     <span class="nav-label">Playground</span>
                     <span class="nav-subtitle">Branding, Motion, 3D...</span>
                 </a>
-                <a href="#resume" class="nav-item external">
+                <a href="resume.pdf" class="nav-item external">
                     <span class="nav-label">Resume</span>
                     <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -67,7 +95,7 @@
                         <path d="M8 8L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
-                <a href="mailto:rahul@example.com" class="nav-item external">
+                <a href="mailto:rahul.nanduri@example.com" class="nav-item external">
                     <span class="nav-label">Email</span>
                     <svg class="external-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M6 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -90,7 +118,7 @@
     <main class="main-content">
             <div class="projects-grid">
                 <!-- Project Card 1 -->
-                <a href="#layerlens" class="project-card">
+                <a href="layerlens.html" class="project-card">
                     <div class="project-mockup">
                         <div class="mockup-browser">
                             <div class="browser-header">
@@ -132,7 +160,7 @@
                 </a>
 
                 <!-- Project Card 2 -->
-                <a href="#hudson-wilder" class="project-card">
+                <a href="hudson-wilder.html" class="project-card">
                     <div class="project-mockup">
                         <div class="mockup-browser">
                             <div class="browser-header">
@@ -167,7 +195,7 @@
                 </a>
 
                 <!-- Project Card 3 -->
-                <a href="#neptune-studio" class="project-card">
+                <a href="neptune-studio.html" class="project-card">
                     <div class="project-mockup">
                         <div class="mockup-browser dark-theme">
                             <div class="browser-header">
@@ -195,7 +223,7 @@
                 </a>
 
                 <!-- Project Card 4 -->
-                <a href="#eco-aid" class="project-card">
+                <a href="eco-aid.html" class="project-card">
                     <div class="project-mockup">
                         <div class="mockup-browser">
                             <div class="browser-header">
@@ -231,13 +259,57 @@
                     </div>
                 </div>
                 </a>
-            </div>
+        </div>
     </main>
+</div>
+
+<!-- ============================================================================
+     GLOBAL FOOTER
+     ============================================================================ -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Rahul Nanduri</h3>
+            <p>Aspiring Product Manager focused on delivering exceptional digital experiences through collaboration.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/rahulnanduri" target="_blank" aria-label="LinkedIn">in</a>
+                <a href="mailto:rahul.nanduri@example.com" aria-label="Email">@</a>
+                <a href="resume.pdf" target="_blank" aria-label="Resume">CV</a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="playground.html">Playground</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Projects</h3>
+            <a href="layerlens.html">LayerLens</a>
+            <a href="hudson-wilder.html">Hudson Wilder</a>
+            <a href="neptune-studio.html">Neptune Studio</a>
+            <a href="eco-aid.html">Eco A.I.D</a>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Connect</h3>
+            <p>Let's work together on your next project</p>
+            <a href="contact.html">Get in Touch</a>
+            <a href="mailto:rahul.nanduri@example.com">rahul.nanduri@example.com</a>
+        </div>
     </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 Rahul Nanduri. All rights reserved. Built with passion for great design.</p>
+    </div>
+</footer>
 
 
     <!-- Sector Properties System -->
-    <script src="js/sector-properties.js"></script>
+    <script src="js/sector-properties.js?v=2"></script>
     
     
     <script>
@@ -259,6 +331,7 @@
                 this.cubePositions = new Map(); // Store each cube's current and target positions
                 this.animationSpeed = 0.15; // How fast cubes move to target position (0-1)
                 this.returnSpeed = 0.08; // How fast cubes return to original position
+                
                 
                 // Animation
                 this.animationId = null;
@@ -327,18 +400,19 @@
             drawDots() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 
-                const circleSize = 4; // 1/3 the size of spheres (12 / 3 = 4)
+                const circleSize = 5; // 1/3 the size of spheres (12 / 3 = 4)
                 const spacing = 25; // 20% less dense (22 * 1.2 = 26.4, rounded to 25)
-                const color = 'rgba(107, 193, 224, 0.6)'; // Blue with 60% opacity
+                const baseColor = 'rgba(107, 193, 224, 0.6)'; // Blue with 60% opacity
                 
                 // Calculate how many circles we need to cover the entire screen
                 const cols = Math.ceil(this.canvas.width / spacing) + 1;
                 const rows = Math.ceil(this.canvas.height / spacing) + 1;
                 
+                
                 for (let i = 0; i < cols; i++) {
                     for (let j = 0; j < rows; j++) {
-                        const baseX = i * spacing;
-                        const baseY = j * spacing;
+                        const baseX = i * spacing - 8;
+                        const baseY = j * spacing - 14;
                         const circleId = `${i}-${j}`;
                         
                         // Initialize circle position if not exists
@@ -387,6 +461,8 @@
                         const speed = this.isMouseOver ? this.animationSpeed : this.returnSpeed;
                         circle.currentX += (circle.targetX - circle.currentX) * speed;
                         circle.currentY += (circle.targetY - circle.currentY) * speed;
+                        
+                        const color = baseColor;
                         
                         // Draw simple 2D circle at current position
                         this.drawCircle(circle.currentX, circle.currentY, circleSize, color);
@@ -438,12 +514,16 @@
                 const dy = y2 - y1;
                 return Math.sqrt(dx * dx + dy * dy);
             }
+
         }
 
         // Initialize the simple dot grid
-        document.addEventListener('DOMContentLoaded', function() {
-            new SimpleDotGrid();
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        new SimpleDotGrid();
+        
+        // Mark portfolio as loaded
+        sessionStorage.setItem('portfolioLoaded', 'true');
+    });
 
         // Initialize sector rendering
         document.addEventListener('DOMContentLoaded', function() {

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ============================================================================
+         CONTACT PAGE - META INFORMATION
+         ============================================================================ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Rahul Nanduri</title>
+    <meta name="description" content="Get in touch with Rahul Nanduri - Product Manager focused on exceptional digital experiences through collaboration.">
+    <meta name="keywords" content="contact, Rahul Nanduri, product manager, UX design, collaboration">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contact - Rahul Nanduri">
+    <meta property="og:description" content="Get in touch with Rahul Nanduri - Product Manager focused on exceptional digital experiences through collaboration.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rrahulnanduri.github.io/portfolio/contact.html">
+    <meta property="og:image" content="https://rrahulnanduri.github.io/portfolio/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact - Rahul Nanduri">
+    <meta name="twitter:description" content="Get in touch with Rahul Nanduri - Product Manager focused on exceptional digital experiences through collaboration.">
+    <meta name="twitter:image" content="https://rrahulnanduri.github.io/portfolio/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- ============================================================================
+         STYLESHEETS
+         ============================================================================ -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- ============================================================================
+         FONT LOADING - OPTIMIZED FOR PERFORMANCE
+         ============================================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .contact-hero h1 {
+            font-family: 'VT323', monospace;
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .contact-method {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-method h3 {
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-method p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .contact-method a {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-method a:hover {
+            background: var(--secondary-color);
+        }
+
+        .contact-form-section {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form-section h2 {
+            font-family: 'VT323', monospace;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-form-section p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-to-home a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================================================
+         CONTACT PAGE CONTENT
+         ============================================================================ -->
+    <div class="contact-container">
+        <!-- Hero Section -->
+        <div class="contact-hero">
+            <h1>Let's Connect</h1>
+            <p>I'm always excited to discuss new opportunities, collaborate on interesting projects, or simply chat about design and product management. Feel free to reach out!</p>
+        </div>
+
+        <!-- Contact Methods -->
+        <div class="contact-methods">
+            <div class="contact-method">
+                <h3>Email</h3>
+                <p>For project inquiries, collaborations, or just to say hello</p>
+                <a href="mailto:rahul.nanduri@example.com">Send Email</a>
+            </div>
+
+            <div class="contact-method">
+                <h3>LinkedIn</h3>
+                <p>Connect with me professionally and see my latest updates</p>
+                <a href="https://linkedin.com/in/rahulnanduri" target="_blank">Visit LinkedIn</a>
+            </div>
+
+            <div class="contact-method">
+                <h3>Resume</h3>
+                <p>Download my resume to learn more about my experience</p>
+                <a href="resume.pdf" target="_blank">Download Resume</a>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-form-section">
+            <h2>Send a Message</h2>
+            <p>Prefer to send a message directly? Use the form below and I'll get back to you as soon as possible.</p>
+            
+            <form id="contactForm" action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required placeholder="Tell me about your project or just say hello..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="back-to-home">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </div>
+
+    <!-- ============================================================================
+         GLOBAL FOOTER
+         ============================================================================ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Rahul Nanduri</h3>
+                <p>Aspiring Product Manager focused on delivering exceptional digital experiences through collaboration.</p>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/rahulnanduri" target="_blank" aria-label="LinkedIn">in</a>
+                    <a href="mailto:rahul.nanduri@example.com" aria-label="Email">@</a>
+                    <a href="resume.pdf" target="_blank" aria-label="Resume">CV</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="playground.html">Playground</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Projects</h3>
+                <a href="layerlens.html">LayerLens</a>
+                <a href="hudson-wilder.html">Hudson Wilder</a>
+                <a href="neptune-studio.html">Neptune Studio</a>
+                <a href="eco-aid.html">Eco A.I.D</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>Let's work together on your next project</p>
+                <a href="contact.html">Get in Touch</a>
+                <a href="mailto:rahul.nanduri@example.com">rahul.nanduri@example.com</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Rahul Nanduri. All rights reserved. Built with passion for great design.</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================================
+         JAVASCRIPT FOR FORM HANDLING
+         ============================================================================ -->
+    <script>
+        // Contact form handling (placeholder for future backend integration)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject') || 'Portfolio Contact';
+            const message = formData.get('message');
+            
+            // Create mailto link as fallback
+            const mailtoLink = `mailto:rahul.nanduri@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\nMessage:\n${message}`)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Thank you for your message! Your email client should open with a pre-filled message. Please send it to complete your contact.');
+        });
+    </script>
+</body>
+</html>
